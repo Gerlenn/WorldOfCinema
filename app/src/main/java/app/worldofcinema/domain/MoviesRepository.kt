@@ -1,4 +1,4 @@
 package app.worldofcinema.domain
 
-class MoviesRepository {
+interface MoviesRepository {
 }

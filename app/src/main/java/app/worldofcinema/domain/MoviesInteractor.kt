@@ -1,4 +1,9 @@
 package app.worldofcinema.domain
 
-class MoviesInteractor {
+import javax.inject.Inject
+
+class MoviesInteractor @Inject constructor(
+    private val moviesRepository: MoviesRepository
+    ){
+
 }
