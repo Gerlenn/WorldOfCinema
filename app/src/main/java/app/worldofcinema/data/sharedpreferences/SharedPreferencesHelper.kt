@@ -16,9 +16,9 @@ class SharedPreferencesHelper @Inject constructor(
     }
 
     fun checkUserExists(): Boolean {
-        val name = sharedPreferences.getString(USER_NAME, "") ?: ""
-        val password = sharedPreferences.getString(USER_PASSWORD, "") ?: ""
-        return (name.isNotEmpty() && password.isNotEmpty())
+        val name = sharedPreferences.getString(USER_NAME, "")
+        val password = sharedPreferences.getString(USER_PASSWORD, "")
+        return (!name.isNullOrEmpty() && !password.isNullOrEmpty())
     }
 
     companion object {
