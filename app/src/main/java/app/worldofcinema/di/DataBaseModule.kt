@@ -13,12 +13,12 @@ import dagger.hilt.components.SingletonComponent
 class DataBaseModule {
 
     @Provides
-    fun itemsDatabase(context: Context): MoviesDataBase {
+    fun moviesDatabase(context: Context): MoviesDataBase {
         return MoviesDataBase.getMoviesDatabaseInstance(context)
     }
 
     @Provides
-    fun provideItemsDAO(itemsDataBase: MoviesDataBase): MoviesDAO {
+    fun provideMoviesDAO(itemsDataBase: MoviesDataBase): MoviesDAO {
         return itemsDataBase.getMoviesDAO()
     }
 }
