@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
+import app.worldofcinema.databinding.FragmentMoviesBinding
+import app.worldofcinema.databinding.ItemFilmBinding
 import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.MoviesModel
 
@@ -13,8 +15,8 @@ class CategoryItemAdapter(
 ) : RecyclerView.Adapter<CategoryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryItemViewHolder {
-        return CategoryItemViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_film, parent, false), movieListener)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
+        return CategoryItemViewHolder(view, movieListener)
     }
 
     override fun onBindViewHolder(holder: CategoryItemViewHolder, position: Int) {

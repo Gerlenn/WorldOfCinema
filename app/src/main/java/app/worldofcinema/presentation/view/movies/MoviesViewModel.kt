@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MoviesInteractor
 import app.worldofcinema.presentation.view.movies.model.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,9 @@ class MoviesViewModel @Inject constructor(
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
+
+    private val _showId = MutableLiveData<String>()
+    val showId: LiveData<String> = _showId
 
     fun getData() {
         viewModelScope.launch {
@@ -42,5 +46,9 @@ class MoviesViewModel @Inject constructor(
                 _error.value = e.message.toString()
             }
         }
+    }
+
+    fun onMovieSelected(id: String) {
+        _showId.value = id
     }
 }

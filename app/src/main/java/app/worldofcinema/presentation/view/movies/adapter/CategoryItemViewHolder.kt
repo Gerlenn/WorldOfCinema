@@ -6,18 +6,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
+import app.worldofcinema.databinding.FragmentLoginBinding
+import app.worldofcinema.databinding.FragmentMoviesBinding
+import app.worldofcinema.presentation.view.movies.MoviesFragment
 import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.MoviesModel
 import app.worldofcinema.utils.AppConstants.RATING
 import com.squareup.picasso.Picasso
 
 class CategoryItemViewHolder(
-    itemView: View,
+    private val itemView: View,
     private val movieListener: MovieListener,
 ) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: MoviesModel) {
-
         val movieImage = itemView.findViewById<ImageView>(R.id.movieImage)
         val titleMovie = itemView.findViewById<TextView>(R.id.titleMovie)
         val date = itemView.findViewById<TextView>(R.id.date)
