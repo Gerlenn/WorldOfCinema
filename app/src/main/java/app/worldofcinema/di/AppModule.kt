@@ -1,4 +1,4 @@
-package app.worldofcinema.data.di
+package app.worldofcinema.di
 
 import android.content.Context
 import dagger.Module
