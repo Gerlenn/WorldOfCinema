@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
+import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
 
 class MainRecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import app.worldofcinema.data.database.entities.CategoriesEntity
 import app.worldofcinema.data.database.entities.MoviesEntity
 
-@Database(entities = [CategoriesEntity::class, MoviesEntity::class], version = 1, exportSchema = false)
+@Database(entities = [MoviesEntity::class, CategoriesEntity::class], version = 1, exportSchema = false)
 abstract class MoviesDataBase : RoomDatabase() {
 
     abstract fun getMoviesDAO(): MoviesDAO

@@ -1,3 +1,6 @@
 package app.worldofcinema.presentation.view.movies.adapter.listener
 
-interface MovieListener
+interface MovieListener{
+
+    fun onMovieSelected(id: String)
+}

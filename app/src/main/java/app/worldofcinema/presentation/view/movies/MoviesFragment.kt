@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
 import app.worldofcinema.presentation.view.movies.adapter.MainRecyclerAdapter
+import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +32,6 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         minCategoryRecycler = requireView().findViewById(R.id.main_recycler)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         minCategoryRecycler.layoutManager = layoutManager
@@ -39,9 +40,14 @@ class MoviesFragment : Fragment() {
 
         viewModel.getData()
 
+        viewModel.showAllMovies()
+
         viewModel.items.observe(viewLifecycleOwner) { listItems ->
             mainRecyclerAdapter.submitList(listItems)
-            Log.w("fragment", "${listItems}")
+        }
+
+        viewModel.error.observe(viewLifecycleOwner){
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
     }
 }

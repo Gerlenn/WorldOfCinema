@@ -4,13 +4,15 @@ import app.worldofcinema.presentation.view.movies.model.Category
 
 interface MoviesRepository {
 
-    suspend fun getData(): List<Category>
+    suspend fun getAllMovies()
 
-    suspend fun getTopMovies(): Category?
+    suspend fun getTopMovies()
 
-    suspend fun getMostPopularMovies(): Category?
+    suspend fun getMostPopularMovies()
 
-    suspend fun getInTheatersMovies(): Category?
+    suspend fun getInTheatersMovies()
 
-    suspend fun getComingSoonMovies(): Category?
+    suspend fun getComingSoonMovies()
+
+    suspend fun showAllMovies(): List<Category>
 }

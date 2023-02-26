@@ -7,7 +7,11 @@ class MoviesInteractor @Inject constructor(
     private val moviesRepository: MoviesRepository,
 ) {
 
-    suspend fun getData(): List<Category> {
-        return moviesRepository.getData()
+    suspend fun getAllMovies() {
+        moviesRepository.getAllMovies()
+    }
+
+    suspend fun showAllMovies(): List<Category> {
+        return moviesRepository.showAllMovies()
     }
 }

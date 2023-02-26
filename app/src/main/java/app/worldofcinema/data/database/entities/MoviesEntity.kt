@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 @Entity("MoviesEntity")
 data class MoviesEntity(
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo( "categoryId")
+    @ColumnInfo("id")
+    val id: String,
+    @ColumnInfo("categoryId")
     val categoryId: Int,
-    @ColumnInfo("movieId")
-    val id: Int,
     @ColumnInfo("imDbRating")
-    val imDbRating: String,
-    @ColumnInfo( "image")
+    val imDbRating: String?,
+    @ColumnInfo("image")
     val image: String,
-    @ColumnInfo( "title")
+    @ColumnInfo("title")
     val title: String,
-    @ColumnInfo( "year")
-    val year: String
+    @ColumnInfo("year")
+    val year: String,
 )

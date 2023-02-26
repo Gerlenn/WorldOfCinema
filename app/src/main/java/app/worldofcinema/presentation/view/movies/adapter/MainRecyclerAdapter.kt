@@ -3,15 +3,17 @@ package app.worldofcinema.presentation.view.movies.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
-import app.worldofcinema.data.model.MovieModel
+import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.Category
+import app.worldofcinema.presentation.view.movies.model.MoviesModel
 
 class MainRecyclerAdapter(
     private val context: Context,
-) : RecyclerView.Adapter<MainRecyclerViewHolder>() {
+) : RecyclerView.Adapter<MainRecyclerViewHolder>(), MovieListener {
 
     private var allCategoryList = mutableListOf<Category>()
 
@@ -21,14 +23,8 @@ class MainRecyclerAdapter(
         this.notifyDataSetChanged()
     }
 
-    private fun setCatItemRecycler(recyclerView: RecyclerView, categoryItem: List<MovieModel>) {
-        val movies: List<MovieModel> =
-            if (categoryItem.size > 10) {
-                categoryItem.subList(0, 10)
-            } else {
-                categoryItem
-            }
-        val itemRecyclerAdapter = CategoryItemAdapter(movies)
+    private fun setCatItemRecycler(recyclerView: RecyclerView, categoryItem: List<MoviesModel>) {
+        val itemRecyclerAdapter = CategoryItemAdapter(categoryItem, this)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.adapter = itemRecyclerAdapter
     }
@@ -45,5 +41,9 @@ class MainRecyclerAdapter(
 
     override fun getItemCount(): Int {
         return allCategoryList.size
+    }
+
+    override fun onMovieSelected(id: String) {
+        Toast.makeText(context, "movie id - $id", Toast.LENGTH_SHORT).show()
     }
 }

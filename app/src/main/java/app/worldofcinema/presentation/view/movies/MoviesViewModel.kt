@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import app.worldofcinema.domain.movies.MoviesInteractor
 import app.worldofcinema.presentation.view.movies.model.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,9 +25,20 @@ class MoviesViewModel @Inject constructor(
     fun getData() {
         viewModelScope.launch {
             try {
-                val listItems = moviesInteractor.getData()
-                _items.value = listItems
-            } catch (e: java.lang.Exception) {
+                val fetch = async { moviesInteractor.getAllMovies() }
+                fetch.await()
+            } catch (e: Exception) {
+                _error.value = e.message.toString()
+            }
+        }
+    }
+
+    fun showAllMovies() {
+        viewModelScope.launch {
+            try {
+                val listMovies = moviesInteractor.showAllMovies()
+                _items.value = listMovies
+            } catch (e: Exception) {
                 _error.value = e.message.toString()
             }
         }
