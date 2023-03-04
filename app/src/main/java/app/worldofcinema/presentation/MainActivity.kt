@@ -1,18 +1,15 @@
 package app.worldofcinema.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import app.worldofcinema.R
 import app.worldofcinema.databinding.ActivityMainBinding
-import app.worldofcinema.presentation.view.auth.LoginFragment
-import app.worldofcinema.presentation.view.movies.MoviesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +36,16 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.nav.observe(this) {
             navController.setGraph(it)
+        }
+
+        viewBinding.bottomNavigation.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, nav, _ ->
+            if (nav.id == R.id.loginFragment) {
+                viewBinding.bottomNavigation.visibility = View.GONE
+            } else {
+                viewBinding.bottomNavigation.visibility = View.VISIBLE
+            }
         }
     }
 }
