@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MoviesInteractor
-import app.worldofcinema.presentation.view.movies.model.Category
+import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -25,6 +25,9 @@ class MoviesViewModel @Inject constructor(
 
     private val _showId = MutableLiveData<String>()
     val showId: LiveData<String> = _showId
+
+    private val _bundle = MutableLiveData<NavigateWithId?>()
+    val bundle: LiveData<NavigateWithId?> = _bundle
 
     fun getData() {
         viewModelScope.launch {
@@ -49,6 +52,17 @@ class MoviesViewModel @Inject constructor(
     }
 
     fun onMovieSelected(id: String) {
-        _showId.value = id
+        _bundle.value = NavigateWithId(
+            R.id.action_moviesFragment_to_movieDetailsFragment, id
+        )
+    }
+
+    fun userNavigated() {
+        _bundle.value = null
     }
 }
+
+data class NavigateWithId(
+    val destinationId: Int,
+    val id: String,
+)

@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.model
+package app.worldofcinema.presentation.view.movies.model.moviesfragment
 
 import app.worldofcinema.data.database.entities.MoviesEntity
 

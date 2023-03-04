@@ -8,4 +8,9 @@
     <string name="error_login">Incorrect Login!</string>
     <string name="error_password">Incorrect Password!</string>
     <string name="world_of_cinema">World of cinema</string>
+    <string name="stars">Stars</string>
+    <string name="awards">Awards</string>
+    <string name="description">Description</string>
+    <string name="imdb">imdb</string>
+
 </resources>

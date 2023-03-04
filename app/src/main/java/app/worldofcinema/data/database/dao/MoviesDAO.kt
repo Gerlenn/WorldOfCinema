@@ -24,4 +24,7 @@ interface MoviesDAO {
 
     @Query("SELECT(SELECT COUNT(*) FROM MoviesEntity) !=0")
     fun doesMovieEntityExist(): Boolean
+
+    @Query("SELECT(SELECT COUNT(*) FROM CategoriesEntity) !=0")
+    fun doesCategoryEntityExist(): Boolean
 }

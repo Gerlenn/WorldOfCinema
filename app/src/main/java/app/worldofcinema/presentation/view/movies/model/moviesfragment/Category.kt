@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.model
+package app.worldofcinema.presentation.view.movies.model.moviesfragment
 
 data class Category(
     val Title: String,

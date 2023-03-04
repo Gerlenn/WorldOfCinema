@@ -2,10 +2,12 @@ package app.worldofcinema.di
 
 import android.content.Context
 import app.worldofcinema.data.auth.AuthRepositoryImpl
+import app.worldofcinema.data.movies.MovieDetailsRepositoryImpl
 import app.worldofcinema.data.movies.MoviesRepositoryImpl
 import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.data.sharedpreferences.SharedPreferencesHelper
 import app.worldofcinema.domain.auth.AuthRepository
+import app.worldofcinema.domain.movies.MovieDetailsRepository
 import app.worldofcinema.domain.movies.MoviesRepository
 import dagger.Binds
 import dagger.Module
@@ -29,6 +31,11 @@ abstract class DataModule {
     abstract fun bindAuthRepository(
         authRepositoryImpl: AuthRepositoryImpl,
     ): AuthRepository
+
+    @Binds
+    abstract fun bindMovieDetailsRepository(
+        movieDetailsRepositoryImpl: MovieDetailsRepositoryImpl,
+    ): MovieDetailsRepository
 
     companion object {
 

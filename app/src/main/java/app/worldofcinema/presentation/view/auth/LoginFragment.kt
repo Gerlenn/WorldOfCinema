@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import app.worldofcinema.R
 import app.worldofcinema.databinding.FragmentLoginBinding
-import app.worldofcinema.utils.NavigationHelper.navigate
 import app.worldofcinema.utils.NavigationHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,7 +40,8 @@ class LoginFragment : Fragment() {
                 || viewBinding.etPassword.length() > 10
                 || viewBinding.etPassword.length() < 6
             ) {
-                viewBinding.etName.error = getString(R.string.error_password)
+                viewBinding.etPassword.error = getString(R.string.error_password)
+
             } else {
                 viewModel.loginUser(
                     viewBinding.etName.text.toString(),
