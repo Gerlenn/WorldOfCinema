@@ -1,6 +1,6 @@
 package app.worldofcinema.domain.movies
 
-import app.worldofcinema.presentation.view.movies.model.Category
+import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
 import javax.inject.Inject
 
 class MoviesInteractor @Inject constructor(

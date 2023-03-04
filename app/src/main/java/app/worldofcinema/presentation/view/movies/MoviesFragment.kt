@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
 import app.worldofcinema.presentation.view.movies.adapter.MainRecyclerAdapter
 import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
+import app.worldofcinema.utils.AppConstants.ID
+import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,6 +54,19 @@ class MoviesFragment : Fragment(), MovieListener {
 
         viewModel.showId.observe(viewLifecycleOwner) { showId ->
             Toast.makeText(context, showId, Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val bundle = Bundle()
+                bundle.putString(ID, navBundle.id)
+
+                navigateWithBundleID(
+                    navBundle.destinationId,
+                    bundle
+                )
+                viewModel.userNavigated()
+            }
         }
     }
 

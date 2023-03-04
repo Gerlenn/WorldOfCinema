@@ -6,11 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
-import app.worldofcinema.databinding.FragmentLoginBinding
-import app.worldofcinema.databinding.FragmentMoviesBinding
-import app.worldofcinema.presentation.view.movies.MoviesFragment
 import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
-import app.worldofcinema.presentation.view.movies.model.MoviesModel
+import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 import app.worldofcinema.utils.AppConstants.RATING
 import com.squareup.picasso.Picasso
 
@@ -29,13 +26,13 @@ class CategoryItemViewHolder(
         titleMovie.text = item.title
         date.text = item.year
 
-        if (item.imDbRating != null && !item.imDbRating.isEmpty()){
+        if (item.imDbRating != null && !item.imDbRating.isEmpty()) {
             imDbRating.text = "$RATING ${item.imDbRating}"
         } else {
             imDbRating.text = ""
         }
 
-        itemView.setOnClickListener{
+        itemView.setOnClickListener {
             movieListener.onMovieSelected(item.id)
         }
     }

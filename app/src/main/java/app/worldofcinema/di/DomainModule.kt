@@ -2,6 +2,8 @@ package app.worldofcinema.di
 
 import app.worldofcinema.domain.auth.AuthInteractor
 import app.worldofcinema.domain.auth.AuthRepository
+import app.worldofcinema.domain.movies.MovieDetailsInteractor
+import app.worldofcinema.domain.movies.MovieDetailsRepository
 import app.worldofcinema.domain.movies.MoviesInteractor
 import app.worldofcinema.domain.movies.MoviesRepository
 import dagger.Module
@@ -25,5 +27,12 @@ class DomainModule {
         authRepository: AuthRepository,
     ): AuthInteractor {
         return AuthInteractor(authRepository)
+    }
+
+    @Provides
+    fun provideMovieDetailsInteractor(
+        movieDetailsRepository: MovieDetailsRepository
+    ): MovieDetailsInteractor {
+        return MovieDetailsInteractor(movieDetailsRepository)
     }
 }

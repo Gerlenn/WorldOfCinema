@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
-import app.worldofcinema.databinding.FragmentMoviesBinding
-import app.worldofcinema.databinding.ItemFilmBinding
 import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
-import app.worldofcinema.presentation.view.movies.model.MoviesModel
+import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 
 class CategoryItemAdapter(
     private val categoryItem: List<MoviesModel>,
