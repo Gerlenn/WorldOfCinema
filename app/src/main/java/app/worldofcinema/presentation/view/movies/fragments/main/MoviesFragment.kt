@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies
+package app.worldofcinema.presentation.view.movies.fragments.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

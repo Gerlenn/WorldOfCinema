@@ -3,7 +3,7 @@ package app.worldofcinema.data.movies
 import app.worldofcinema.data.database.dao.MoviesDAO
 import app.worldofcinema.data.database.entities.CategoriesEntity
 import app.worldofcinema.data.database.entities.MoviesEntity
-import app.worldofcinema.data.model.moviesfragment.MoviesResponse
+import app.worldofcinema.data.model.moviesesponse.MoviesResponse
 import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.domain.movies.MoviesRepository
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
