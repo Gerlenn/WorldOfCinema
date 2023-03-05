@@ -2,10 +2,7 @@ package app.worldofcinema.di
 
 import app.worldofcinema.domain.auth.AuthInteractor
 import app.worldofcinema.domain.auth.AuthRepository
-import app.worldofcinema.domain.movies.MovieDetailsInteractor
-import app.worldofcinema.domain.movies.MovieDetailsRepository
-import app.worldofcinema.domain.movies.MoviesInteractor
-import app.worldofcinema.domain.movies.MoviesRepository
+import app.worldofcinema.domain.movies.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,5 +31,12 @@ class DomainModule {
         movieDetailsRepository: MovieDetailsRepository
     ): MovieDetailsInteractor {
         return MovieDetailsInteractor(movieDetailsRepository)
+    }
+
+    @Provides
+    fun provideMovieSearchInteractor(
+        movieSearchRepository: MovieSearchRepository
+    ): MovieSearchInteractor {
+        return MovieSearchInteractor(movieSearchRepository)
     }
 }

@@ -1,4 +1,4 @@
-package app.worldofcinema.data.model.detailsfragment
+package app.worldofcinema.data.model.detailsresponse
 
 import com.google.gson.annotations.SerializedName
 

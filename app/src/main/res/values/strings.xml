@@ -15,5 +15,8 @@
     <string name="search">search</string>
     <string name="main">main</string>
     <string name="favorites">favorites</string>
+    <string name="enter_movie">enter movie</string>
+    <string name="short_input">short input, enter more characters</string>
+    <string name="search_error">search error</string>
 
 </resources>

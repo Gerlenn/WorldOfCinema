@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies
+package app.worldofcinema.presentation.view.movies.fragments.details
 
 import android.net.Uri
 import android.os.Bundle

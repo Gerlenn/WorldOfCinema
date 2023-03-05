@@ -1,6 +1,6 @@
 package app.worldofcinema.presentation.view.movies.model.detailsfragment
 
-import app.worldofcinema.data.model.detailsfragment.DetailsResponse
+import app.worldofcinema.data.model.detailsresponse.DetailsResponse
 
 data class DetailsModel(
     val awards: String?,
