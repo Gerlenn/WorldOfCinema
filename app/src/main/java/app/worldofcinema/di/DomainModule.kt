@@ -39,4 +39,11 @@ class DomainModule {
     ): MovieSearchInteractor {
         return MovieSearchInteractor(movieSearchRepository)
     }
+
+    @Provides
+    fun provideMovieFavoritesInteractor(
+        movieFavoritesRepository: MovieFavoritesRepository,
+    ): MovieFavoritesInteractor {
+        return MovieFavoritesInteractor(movieFavoritesRepository)
+    }
 }

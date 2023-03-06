@@ -18,5 +18,10 @@
     <string name="enter_movie">enter movie</string>
     <string name="short_input">short input, enter more characters</string>
     <string name="search_error">search error</string>
+    <string name="favorites_text_fragment">Favorites</string>
+    <string name="get_favorite_error">get favorite error</string>
+    <string name="delete_favorite_error">delete favorite error</string>
+    <string name="error_get_movie_details">error get movie details</string>
+    <string name="error_fav_selected">error favorite selected</string>
 
 </resources>

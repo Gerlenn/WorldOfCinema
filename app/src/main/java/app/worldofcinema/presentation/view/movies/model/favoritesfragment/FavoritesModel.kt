@@ -1,8 +1,8 @@
-package app.worldofcinema.presentation.view.movies.model.moviesfragment
+package app.worldofcinema.presentation.view.movies.model.favoritesfragment
 
 import app.worldofcinema.data.database.entities.MoviesEntity
 
-class MoviesModel(
+class FavoritesModel(
     val id: String,
     val imDbRating: String?,
     val image: String,
@@ -14,6 +14,5 @@ class MoviesModel(
         movieEntity.imDbRating,
         movieEntity.image,
         movieEntity.title,
-        movieEntity.year,
-        )
+        movieEntity.year)
 }
