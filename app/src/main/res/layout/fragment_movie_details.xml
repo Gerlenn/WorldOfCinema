@@ -7,6 +7,18 @@
     tools:context=".presentation.view.movies.fragments.details.MovieDetailsFragment">
 
     <ImageView
+        android:id="@+id/btn_favorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/favorite_selected_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toEndOf="@+id/detTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"/>
+
+    <ImageView
         android:id="@+id/detImage"
         android:layout_width="110dp"
         android:layout_height="130dp"
@@ -41,7 +53,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toEndOf="@+id/detImage"
         app:layout_constraintTop_toBottomOf="@+id/detTitle"
         app:layout_constraintVertical_bias="0.0" />
@@ -56,7 +68,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toEndOf="@+id/detYear"
         app:layout_constraintTop_toBottomOf="@+id/detTitle"
         app:layout_constraintVertical_bias="0.0" />
@@ -65,34 +77,17 @@
         android:id="@+id/detGenres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:layout_marginStart="12dp"
         android:textColor="#858585"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toEndOf="@+id/detImage"
         app:layout_constraintTop_toBottomOf="@+id/detYear"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <TextView
-        android:id="@+id/detTextImDbRating"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginTop="2dp"
-        android:text="@string/imdb"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toEndOf="@+id/detImage"
-        app:layout_constraintTop_toBottomOf="@+id/detGenres"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
         android:id="@+id/detImDbRating"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text=""
@@ -101,10 +96,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toEndOf="@+id/detImage"
         app:layout_constraintTop_toBottomOf="@+id/detGenres"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <WebView
         android:id="@+id/detTrailer"

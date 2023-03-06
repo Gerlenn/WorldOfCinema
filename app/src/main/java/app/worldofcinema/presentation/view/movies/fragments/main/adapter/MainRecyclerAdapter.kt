@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.adapter
+package app.worldofcinema.presentation.view.movies.fragments.main.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
-import app.worldofcinema.presentation.view.movies.adapter.listener.MovieListener
+import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 

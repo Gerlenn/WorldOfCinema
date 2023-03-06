@@ -21,6 +21,11 @@ class SharedPreferencesHelper @Inject constructor(
         return (!name.isNullOrEmpty() && !password.isNullOrEmpty())
     }
 
+    fun removeUser(){
+        saveUserName(null)
+        saveUserPassword(null)
+    }
+
     companion object {
         private const val USER_NAME = "USER NAME"
         private const val USER_PASSWORD = "USER PASSWORD"

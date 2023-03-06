@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieDetailsInteractor
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +19,11 @@ class MovieDetailsViewModel @Inject constructor(
     private val _movie = MutableLiveData<DetailsModel>()
     val movie: LiveData<DetailsModel> = _movie
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
+    private val _errorGetMovieDetails = MutableLiveData<Int>()
+    val errorGetMovieDetails: LiveData<Int> = _errorGetMovieDetails
+
+    private val _errorFavSelected = MutableLiveData<Int>()
+    val errorFavSelected: LiveData<Int> = _errorFavSelected
 
     fun getMovieDetailsById(id: String) {
         viewModelScope.launch {
@@ -27,7 +31,17 @@ class MovieDetailsViewModel @Inject constructor(
                 val movieDetails = movieDetailsInteractor.getMovieDetailsById(id)
                 _movie.value = movieDetails
             } catch (e: Exception) {
-                _error.value = e.message.toString()
+                _errorGetMovieDetails.value = R.string.error_get_movie_details
+            }
+        }
+    }
+
+    fun favoriteSelected(id: String, isFavorite: Boolean){
+        viewModelScope.launch {
+            try {
+               movieDetailsInteractor.favoriteSelected(id, isFavorite)
+            } catch (e: Exception) {
+                _errorFavSelected.value = R.string.error_fav_selected
             }
         }
     }

@@ -12,13 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import app.worldofcinema.databinding.FragmentMovieDetailsBinding
 import app.worldofcinema.utils.AppConstants.ID
+import app.worldofcinema.utils.AppConstants.RATING
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
-    lateinit var webView: WebView
+    private lateinit var webView: WebView
 
     private val viewModel: MovieDetailsViewModel by viewModels()
 
@@ -42,8 +43,12 @@ class MovieDetailsFragment : Fragment() {
             id?.let { viewModel.getMovieDetailsById(it) }
         }
 
-        viewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        viewModel.errorGetMovieDetails.observe(viewLifecycleOwner) { errGetDetails ->
+            Toast.makeText(context, getString(errGetDetails), Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.errorFavSelected.observe(viewLifecycleOwner) { errFavSelected ->
+            Toast.makeText(context, getString(errFavSelected), Toast.LENGTH_SHORT).show()
         }
 
         viewModel.movie.observe(viewLifecycleOwner) { detailsModel ->
@@ -54,15 +59,19 @@ class MovieDetailsFragment : Fragment() {
             viewBinding.detYear.text = detailsModel.year
             viewBinding.detCountries.text = detailsModel.countries
             viewBinding.detGenres.text = detailsModel.genres
-            viewBinding.detImDbRating.text = detailsModel.imDbRating
+            viewBinding.detImDbRating.text = "$RATING ${detailsModel.imDbRating}"
             viewBinding.detPlot.text = detailsModel.plot
             viewBinding.detAwards.text = detailsModel.awards
             viewBinding.detStars.text = detailsModel.stars
             Picasso.get().load(Uri.parse(detailsModel.image)).into(viewBinding.detImage)
             Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl))
                 .resize(308, 171).into(viewBinding.detImageTrailer)
-        }
 
+            viewBinding.btnFavorite.setOnClickListener {
+                viewBinding.btnFavorite.isSelected = !it.isSelected
+                viewModel.favoriteSelected(detailsModel.id, true)
+            }
+        }
 
         viewBinding.detImageTrailer.setOnClickListener {
             viewBinding.detImageTrailer.visibility = View.GONE
