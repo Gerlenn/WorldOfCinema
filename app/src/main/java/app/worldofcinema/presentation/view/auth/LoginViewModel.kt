@@ -22,6 +22,11 @@ class LoginViewModel @Inject constructor(
     private val _navigation = MutableLiveData<Int?>()
     val navigation: LiveData<Int?> = _navigation
 
+    private val _loginState = MutableLiveData<LoginState>()
+    val loginState: LiveData<LoginState> = _loginState
+
+    private val _errorLoginUser = MutableLiveData<Int>()
+    val errorLoginUser: LiveData<Int> = _errorLoginUser
 
     fun loginUser(userName: String, userPassword: String) {
 
@@ -36,12 +41,35 @@ class LoginViewModel @Inject constructor(
                     _navigation.value = R.navigation.main_graph
                 }
             } catch (e: Exception) {
-                Log.w("exception", "loginUser FAILED")
+                _errorLoginUser.value = R.string.error_login_user
             }
         }
+    }
+
+    fun validateCredentials(username: String, password: String) {
+        if (!isValidUsername(username)) {
+            _loginState.value = LoginState.Error(R.string.invalid_username)
+        } else if (!isValidPassword(password)) {
+            _loginState.value = LoginState.Error(R.string.invalid_password)
+        } else {
+            _loginState.value = LoginState.Success
+        }
+    }
+
+    private fun isValidUsername(username: String): Boolean {
+        return !(username.isEmpty() || username.length > 10 || username.length < 3)
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        return !(password.isEmpty() || password.length > 10 || password.length < 6)
     }
 
     fun userNavigated() {
         _navigation.value = null
     }
+}
+
+sealed class LoginState {
+    object Success : LoginState()
+    data class Error(val messageResId: Int) : LoginState()
 }
