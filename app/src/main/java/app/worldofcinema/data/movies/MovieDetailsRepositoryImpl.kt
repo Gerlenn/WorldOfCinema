@@ -6,6 +6,7 @@ import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.domain.movies.MovieDetailsRepository
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -17,9 +18,22 @@ class MovieDetailsRepositoryImpl @Inject constructor(
     override suspend fun getMovieDetailsById(id: String): DetailsModel {
         return withContext(Dispatchers.IO) {
             val response = apiService.getDetailsMovieById(id)
+            val favoriteState = moviesDAO.getStateFavorite(id)
             val details = response.body()?.let {
                 DetailsModel(
-                    detailsResponse = it
+                    it.awards,
+                    it.countries,
+                    it.id,
+                    it.imDbRating,
+                    it.image,
+                    it.plot,
+                    it.stars,
+                    it.genres,
+                    it.title,
+                    it.year,
+                    it.trailer?.linkEmbed,
+                    it.trailer?.thumbnailUrl,
+                    favoriteState.isFavorite
                 )
             }
             details!!

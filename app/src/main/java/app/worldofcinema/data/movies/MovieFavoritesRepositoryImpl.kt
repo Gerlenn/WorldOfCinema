@@ -35,6 +35,7 @@ class MovieFavoritesRepositoryImpl @Inject constructor(
     override suspend fun deleteFavoriteById(id: String) {
         withContext(Dispatchers.IO) {
             moviesDAO.deleteFavoriteEntityById(id)
+            moviesDAO.addToFavorite(id, isFavorite = false)
         }
     }
 
