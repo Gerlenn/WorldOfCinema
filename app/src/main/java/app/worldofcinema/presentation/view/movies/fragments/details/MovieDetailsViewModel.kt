@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieDetailsInteractor
+import app.worldofcinema.domain.movies.MovieFavoritesInteractor
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val movieDetailsInteractor: MovieDetailsInteractor,
+    private val movieFavoritesInteractor: MovieFavoritesInteractor
 ) : ViewModel() {
 
     private val _movie = MutableLiveData<DetailsModel>()
@@ -40,6 +42,16 @@ class MovieDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                movieDetailsInteractor.favoriteSelected(id, isFavorite)
+            } catch (e: Exception) {
+                _errorFavSelected.value = R.string.error_fav_selected
+            }
+        }
+    }
+
+    fun deleteFavorite(id: String){
+        viewModelScope.launch {
+            try {
+                movieFavoritesInteractor.deleteFavItemById(id)
             } catch (e: Exception) {
                 _errorFavSelected.value = R.string.error_fav_selected
             }

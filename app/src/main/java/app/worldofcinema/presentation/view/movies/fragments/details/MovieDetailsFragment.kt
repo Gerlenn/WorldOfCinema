@@ -1,5 +1,6 @@
 package app.worldofcinema.presentation.view.movies.fragments.details
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -67,9 +68,10 @@ class MovieDetailsFragment : Fragment() {
             Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl))
                 .resize(308, 171).into(viewBinding.detImageTrailer)
 
+            viewBinding.btnFavorite.isSelected = detailsModel.isFavorite!!
+
             viewBinding.btnFavorite.setOnClickListener {
-                viewBinding.btnFavorite.isSelected = !it.isSelected
-                viewModel.favoriteSelected(detailsModel.id, true)
+                viewModel.favoriteSelected(detailsModel.id, !it.isSelected)
             }
         }
 
