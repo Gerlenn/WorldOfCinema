@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import app.worldofcinema.R
+import app.worldofcinema.databinding.MainRecyclerRowItemBinding
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
@@ -29,10 +29,10 @@ class MainRecyclerAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRecyclerViewHolder {
-        return MainRecyclerViewHolder(
-            LayoutInflater.from(context)
-                .inflate(R.layout.main_recycler_row_item, parent, false)
-        )
+
+        val viewBinding =
+            MainRecyclerRowItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MainRecyclerViewHolder(viewBinding)
     }
 
     override fun onBindViewHolder(holder: MainRecyclerViewHolder, position: Int) {

@@ -3,18 +3,19 @@ package app.worldofcinema.presentation.view.movies.fragments.main.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import app.worldofcinema.R
+import app.worldofcinema.databinding.ItemFilmBinding
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 
 class CategoryItemAdapter(
     private val categoryItem: List<MoviesModel>,
-    private val movieListener: MovieListener
+    private val movieListener: MovieListener,
 ) : RecyclerView.Adapter<CategoryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
-        return CategoryItemViewHolder(view, movieListener)
+        val viewBinding =
+            ItemFilmBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryItemViewHolder(viewBinding, movieListener)
     }
 
     override fun onBindViewHolder(holder: CategoryItemViewHolder, position: Int) {
