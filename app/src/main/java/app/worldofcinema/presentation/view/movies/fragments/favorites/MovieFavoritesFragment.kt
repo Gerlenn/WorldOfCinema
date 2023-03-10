@@ -63,7 +63,7 @@ class MovieFavoritesFragment : Fragment(), FavoritesListener {
             }
         }
 
-        viewBinding.btnLogOut.setOnClickListener {
+        viewBinding.logOut.setOnClickListener {
             viewModel.logOutUser()
         }
     }
