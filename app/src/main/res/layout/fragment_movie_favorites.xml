@@ -33,15 +33,26 @@
         app:layout_constraintTop_toBottomOf="@+id/favoritesText"
         tools:listitem="@layout/favorites_film"/>
 
-    <ImageView
-        android:id="@+id/btnLogOut"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/sign_out"
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="#FFFFFF"
+        android:bottomLeftRadius="20dp"
+        android:bottomRightRadius="20dp"
+        android:text="@string/log_out"
+        android:textColor="@color/ic_launcher_background"
+        android:textSize="5sp"
+        android:textStyle="bold"
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp"
+        app:circularflow_defaultRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toEndOf="@+id/favoritesText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/ic_launcher_background"
+        app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
