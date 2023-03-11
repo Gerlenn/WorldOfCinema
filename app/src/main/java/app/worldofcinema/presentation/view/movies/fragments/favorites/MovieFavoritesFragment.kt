@@ -49,15 +49,11 @@ class MovieFavoritesFragment : Fragment(), FavoritesListener {
             movieFavoritesAdapter.submitList(it)
         }
 
-        viewModel.errorGetFav.observe(viewLifecycleOwner) { errorGetMsg ->
-            Toast.makeText(context, getString(errorGetMsg), Toast.LENGTH_SHORT).show()
+        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            Toast.makeText(context, getString(errorMsg), Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.errorDelFav.observe(viewLifecycleOwner) { errorDellMsg ->
-            Toast.makeText(context, getString(errorDellMsg), Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.logoutUser.observe(viewLifecycleOwner){ logOut ->
+        viewModel.logoutUser.observe(viewLifecycleOwner) { logOut ->
             if (logOut != null) {
                 val navGraph = findNavController().navInflater.inflate(logOut)
                 navGraph.startDestination = R.id.loginFragment

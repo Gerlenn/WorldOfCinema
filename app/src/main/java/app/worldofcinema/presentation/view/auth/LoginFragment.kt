@@ -35,29 +35,28 @@ class LoginFragment : Fragment() {
             val password = viewBinding.etPassword.text.toString()
             viewModel.validateCredentials(username, password)
         }
+
         viewModel.loginState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is LoginState.Success -> {
-                    viewModel.loginUser(
-                        viewBinding.etName.toString(),
-                        viewBinding.etPassword.toString()
-                    )
+                    viewModel.loginUser(viewBinding.etName.toString(),
+                        viewBinding.etPassword.toString())
                 }
                 is LoginState.Error -> {
                     val message = getString(state.messageResId)
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
 
-            viewModel.errorLoginUser.observe(viewLifecycleOwner) { errLoginUser ->
-                Toast.makeText(context, getString(errLoginUser), Toast.LENGTH_SHORT).show()
-            }
+        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            Toast.makeText(context, getString(errorMsg), Toast.LENGTH_SHORT).show()
+        }
 
-            viewModel.navigation.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    replaceGraph(it)
-                    viewModel.userNavigated()
-                }
+        viewModel.navigation.observe(viewLifecycleOwner) { main ->
+            if (main != null) {
+                replaceGraph(main)
+                viewModel.userNavigated()
             }
         }
     }

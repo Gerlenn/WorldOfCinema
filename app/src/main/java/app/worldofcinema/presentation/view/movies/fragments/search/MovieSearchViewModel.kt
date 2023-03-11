@@ -1,11 +1,13 @@
 package app.worldofcinema.presentation.view.movies.fragments.search
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieSearchInteractor
+import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.presentation.view.movies.model.searchfragment.ResultSearchModel
 import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +17,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieSearchViewModel @Inject constructor(
     private val movieSearchInteractor: MovieSearchInteractor,
+    private val context: Context,
 ) : ViewModel() {
+
+    private lateinit var check: InternetConnection
 
     private val _movies = MutableLiveData<List<ResultSearchModel>>()
     val movies: LiveData<List<ResultSearchModel>> = _movies
@@ -31,16 +36,21 @@ class MovieSearchViewModel @Inject constructor(
 
 
     fun findIMovies(searchText: String) {
+        check = InternetConnection(context)
         viewModelScope.launch {
             try {
-                if (searchText.length > 2) {
-                    val foundMovies = movieSearchInteractor.showSearchMovies(searchText)
-                    _movies.value = foundMovies
-                } else if (searchText.length == 1) {
-                    _shortSearch.value = R.string.short_input
+                if (check.isOnline()) {
+                    if (searchText.length > 2) {
+                        val foundMovies = movieSearchInteractor.showSearchMovies(searchText)
+                        _movies.value = foundMovies
+                    } else if (searchText.length == 1) {
+                        _shortSearch.value = R.string.short_input
+                    }
+                } else {
+                    _error.value = R.string.errorInternet
                 }
             } catch (e: Exception) {
-                _error.value = R.string.short_input
+                _error.value = R.string.nothing_fount
             }
         }
     }
@@ -50,10 +60,12 @@ class MovieSearchViewModel @Inject constructor(
     }
 
     fun onMovieSelected(id: String) {
-        _bundle.value = NavigateWithId(
-            R.id.action_movieSearchFragment_to_movieDetailsFragment, id
-
-        )
+        if (check.isOnline()) {
+            _bundle.value =
+                NavigateWithId(R.id.action_movieSearchFragment_to_movieDetailsFragment, id)
+        } else {
+            _error.value = R.string.errorInternet
+        }
     }
 }
 
