@@ -23,6 +23,7 @@
     <string name="delete_favorite_error">delete favorite error</string>
     <string name="error_get_movie_details">error get movie details</string>
     <string name="error_fav_selected">error favorite selected</string>
+    <string name="error_fav_delete">error favorite delete</string>
     <string name="error_login_user">login error</string>
     <string name="invalid_username">Login invalid!</string>
     <string name="invalid_password">Password invalid!</string>

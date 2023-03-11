@@ -6,7 +6,6 @@ import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.domain.movies.MovieDetailsRepository
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

@@ -18,8 +18,7 @@ class CategoryItemViewHolder(
         viewBinding.date.text = moviesModel.year
         viewBinding.imDbRating.text = moviesModel.imDbRating
 
-        Picasso.get().load(Uri.parse(moviesModel.image)).resize(330, 380)
-            .into(viewBinding.movieImage)
+        Picasso.get().load(Uri.parse(moviesModel.image)).resize(330, 380).into(viewBinding.movieImage)
 
         if (moviesModel.imDbRating != null && !moviesModel.imDbRating.isEmpty()) {
             viewBinding.imDbRating.text = "$RATING ${moviesModel.imDbRating}"

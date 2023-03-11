@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val movieDetailsInteractor: MovieDetailsInteractor,
-    private val movieFavoritesInteractor: MovieFavoritesInteractor
+    private val movieFavoritesInteractor: MovieFavoritesInteractor,
 ) : ViewModel() {
 
     private val _movie = MutableLiveData<DetailsModel>()
@@ -38,22 +38,22 @@ class MovieDetailsViewModel @Inject constructor(
         }
     }
 
-    fun favoriteSelected(id: String, isFavorite: Boolean){
+    fun favoriteSelected(id: String, isFavorite: Boolean) {
         viewModelScope.launch {
             try {
-               movieDetailsInteractor.favoriteSelected(id, isFavorite)
+                movieDetailsInteractor.favoriteSelected(id, isFavorite)
             } catch (e: Exception) {
                 _errorFavSelected.value = R.string.error_fav_selected
             }
         }
     }
 
-    fun deleteFavorite(id: String){
+    fun deleteFavorite(id: String) {
         viewModelScope.launch {
             try {
                 movieFavoritesInteractor.deleteFavItemById(id)
             } catch (e: Exception) {
-                _errorFavSelected.value = R.string.error_fav_selected
+                _errorFavSelected.value = R.string.error_fav_delete
             }
         }
     }

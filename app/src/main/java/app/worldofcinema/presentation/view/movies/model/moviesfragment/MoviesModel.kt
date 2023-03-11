@@ -15,5 +15,5 @@ class MoviesModel(
         movieEntity.image,
         movieEntity.title,
         movieEntity.year,
-        )
+    )
 }

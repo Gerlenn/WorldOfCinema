@@ -28,14 +28,14 @@ class DomainModule {
 
     @Provides
     fun provideMovieDetailsInteractor(
-        movieDetailsRepository: MovieDetailsRepository
+        movieDetailsRepository: MovieDetailsRepository,
     ): MovieDetailsInteractor {
         return MovieDetailsInteractor(movieDetailsRepository)
     }
 
     @Provides
     fun provideMovieSearchInteractor(
-        movieSearchRepository: MovieSearchRepository
+        movieSearchRepository: MovieSearchRepository,
     ): MovieSearchInteractor {
         return MovieSearchInteractor(movieSearchRepository)
     }

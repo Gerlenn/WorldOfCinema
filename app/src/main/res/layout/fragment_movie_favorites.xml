@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.view.movies.fragments.favorites.MovieFavoritesFragment">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/favoritesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,12 +33,12 @@
         app:layout_constraintTop_toBottomOf="@+id/favoritesText"
         tools:listitem="@layout/favorites_film"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/logOut"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginTop="6dp"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@color/white"
         android:bottomLeftRadius="20dp"
         android:bottomRightRadius="20dp"
         android:text="@string/log_out"
@@ -53,6 +53,7 @@
         app:layout_constraintStart_toEndOf="@+id/favoritesText"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/ic_launcher_background"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

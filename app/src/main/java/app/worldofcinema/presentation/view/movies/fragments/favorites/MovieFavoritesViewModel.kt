@@ -1,14 +1,13 @@
 package app.worldofcinema.presentation.view.movies.fragments.favorites
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieFavoritesInteractor
-import app.worldofcinema.presentation.view.movies.fragments.main.NavigateWithId
 import app.worldofcinema.presentation.view.movies.model.favoritesfragment.FavoritesModel
+import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -56,10 +55,11 @@ class MovieFavoritesViewModel @Inject constructor(
         }
     }
 
-    fun logOutUser(){
+    fun logOutUser() {
         viewModelScope.launch {
             movieFavoritesInteractor.logoutUser()
             _logoutUser.value = R.navigation.auth_graph
+
         }
     }
 

@@ -46,5 +46,5 @@ interface MoviesDAO {
     fun addToFavorite(id: String, isFavorite: Boolean)
 
     @Query("SELECT * FROM MoviesEntity WHERE id = :id")
-    fun getStateFavorite(id: String ): MoviesEntity
+    fun getStateFavorite(id: String): MoviesEntity
 }

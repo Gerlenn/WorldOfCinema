@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"></ImageView>
+        app:layout_constraintVertical_bias="0.765"
+        tools:ignore="ContentDescription" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signIn"
@@ -33,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutPassword"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="0.113" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutName"
@@ -41,11 +44,10 @@
         android:layout_width="300dp"
         android:layout_height="90dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="292dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/login"
         android:textColorHint="@color/hintText"
-        app:boxStrokeColor="@color/white"
+        app:boxStrokeColor="@color/helperText"
         app:counterEnabled="true"
         app:counterMaxLength="10"
         app:counterTextColor="@color/helperText"
@@ -59,12 +61,13 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133">
+        app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +79,7 @@
         android:layout_marginEnd="32dp"
         android:hint="@string/password"
         android:textColorHint="@color/hintText"
-        app:boxStrokeColor="@color/white"
+        app:boxStrokeColor="@color/helperText"
         app:counterEnabled="true"
         app:counterMaxLength="10"
         app:counterTextColor="@color/helperText"
@@ -90,13 +93,14 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647">
+        app:layout_constraintVertical_bias="0.55">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

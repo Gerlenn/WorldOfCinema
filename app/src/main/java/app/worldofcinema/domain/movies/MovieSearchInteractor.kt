@@ -1,7 +1,6 @@
 package app.worldofcinema.domain.movies
 
 import app.worldofcinema.presentation.view.movies.model.searchfragment.ResultSearchModel
-import app.worldofcinema.presentation.view.movies.model.searchfragment.SearchModel
 import javax.inject.Inject
 
 class MovieSearchInteractor @Inject constructor(

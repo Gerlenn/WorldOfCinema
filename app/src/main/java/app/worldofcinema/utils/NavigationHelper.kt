@@ -10,7 +10,7 @@ object NavigationHelper {
         findNavController().setGraph(graphId)
     }
 
-    fun Fragment.navigateWithBundleID(destination: Int, bundle: Bundle){
+    fun Fragment.navigateWithBundleID(destination: Int, bundle: Bundle) {
         findNavController().navigate(destination, bundle)
     }
 }

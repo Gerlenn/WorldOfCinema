@@ -1,6 +1,5 @@
 package app.worldofcinema.presentation.view.movies.fragments.details
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -65,7 +64,6 @@ class MovieDetailsFragment : Fragment() {
             } else {
                 viewBinding.detImDbRating.text = ""
             }
-
             viewBinding.detPlot.text = detailsModel.plot
             viewBinding.detAwards.text = detailsModel.awards
             viewBinding.detStars.text = detailsModel.stars

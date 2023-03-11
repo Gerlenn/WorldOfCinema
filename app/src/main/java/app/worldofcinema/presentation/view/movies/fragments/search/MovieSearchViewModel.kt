@@ -1,14 +1,13 @@
 package app.worldofcinema.presentation.view.movies.fragments.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieSearchInteractor
-import app.worldofcinema.presentation.view.movies.fragments.main.NavigateWithId
 import app.worldofcinema.presentation.view.movies.model.searchfragment.ResultSearchModel
+import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -34,10 +33,10 @@ class MovieSearchViewModel @Inject constructor(
     fun findIMovies(searchText: String) {
         viewModelScope.launch {
             try {
-                if (searchText.length > 2){
+                if (searchText.length > 2) {
                     val foundMovies = movieSearchInteractor.showSearchMovies(searchText)
                     _movies.value = foundMovies
-                }else if (searchText.length == 1) {
+                } else if (searchText.length == 1) {
                     _shortSearch.value = R.string.short_input
                 }
             } catch (e: Exception) {
@@ -51,12 +50,10 @@ class MovieSearchViewModel @Inject constructor(
     }
 
     fun onMovieSelected(id: String) {
-
         _bundle.value = NavigateWithId(
             R.id.action_movieSearchFragment_to_movieDetailsFragment, id
 
         )
-        Log.w("ID_FILM!!!", "$id")
     }
 }
 

@@ -21,7 +21,7 @@ class SharedPreferencesHelper @Inject constructor(
         return (!name.isNullOrEmpty() && !password.isNullOrEmpty())
     }
 
-    fun removeUser(){
+    fun removeUser() {
         saveUserName(null)
         saveUserPassword(null)
     }
