@@ -21,11 +21,8 @@ class MovieDetailsViewModel @Inject constructor(
     private val _movie = MutableLiveData<DetailsModel>()
     val movie: LiveData<DetailsModel> = _movie
 
-    private val _errorGetMovieDetails = MutableLiveData<Int>()
-    val errorGetMovieDetails: LiveData<Int> = _errorGetMovieDetails
-
-    private val _errorFavSelected = MutableLiveData<Int>()
-    val errorFavSelected: LiveData<Int> = _errorFavSelected
+    private val _error = MutableLiveData<Int>()
+    val error: LiveData<Int> = _error
 
     fun getMovieDetailsById(id: String) {
         viewModelScope.launch {
@@ -33,7 +30,7 @@ class MovieDetailsViewModel @Inject constructor(
                 val movieDetails = movieDetailsInteractor.getMovieDetailsById(id)
                 _movie.value = movieDetails
             } catch (e: Exception) {
-                _errorGetMovieDetails.value = R.string.error_get_movie_details
+                _error.value = R.string.error_get_movie_details
             }
         }
     }
@@ -43,7 +40,7 @@ class MovieDetailsViewModel @Inject constructor(
             try {
                 movieDetailsInteractor.favoriteSelected(id, isFavorite)
             } catch (e: Exception) {
-                _errorFavSelected.value = R.string.error_fav_selected
+                _error.value = R.string.error_fav_selected
             }
         }
     }
@@ -53,7 +50,7 @@ class MovieDetailsViewModel @Inject constructor(
             try {
                 movieFavoritesInteractor.deleteFavItemById(id)
             } catch (e: Exception) {
-                _errorFavSelected.value = R.string.error_fav_delete
+                _error.value = R.string.error_fav_delete
             }
         }
     }

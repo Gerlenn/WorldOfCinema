@@ -1,12 +1,13 @@
 package app.worldofcinema.presentation.view.auth
 
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.auth.AuthInteractor
+import app.worldofcinema.utils.InternetConnection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
@@ -14,10 +15,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+const val COROUTINE_NAME = "with exception"
+
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val authInteractor: AuthInteractor,
+    private val context: Context,
 ) : ViewModel() {
+
+    private lateinit var check: InternetConnection
 
     private val _navigation = MutableLiveData<Int?>()
     val navigation: LiveData<Int?> = _navigation
@@ -25,23 +31,29 @@ class LoginViewModel @Inject constructor(
     private val _loginState = MutableLiveData<LoginState>()
     val loginState: LiveData<LoginState> = _loginState
 
-    private val _errorLoginUser = MutableLiveData<Int>()
-    val errorLoginUser: LiveData<Int> = _errorLoginUser
+    private val _error = MutableLiveData<Int>()
+    val error: LiveData<Int> = _error
 
     fun loginUser(userName: String, userPassword: String) {
 
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exceptionHandler called", exception.toString())
+        check = InternetConnection(context)
+
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, _ ->
+            _error.value = R.string.exceptionHandler_called
         }
 
-        viewModelScope.launch(CoroutineName("with exception") + Dispatchers.Main + coroutineExceptionHandler) {
+        viewModelScope.launch(CoroutineName(COROUTINE_NAME) + Dispatchers.Main + coroutineExceptionHandler) {
             try {
                 launch {
-                    authInteractor.loginUser(userName, userPassword)
-                    _navigation.value = R.navigation.main_graph
+                    if (check.isOnline()){
+                        authInteractor.loginUser(userName, userPassword)
+                        _navigation.value = R.navigation.main_graph
+                    }else{
+                        _error.value = R.string.errorInternet
+                    }
                 }
             } catch (e: Exception) {
-                _errorLoginUser.value = R.string.error_login_user
+                _error.value = R.string.error_login_user
             }
         }
     }

@@ -59,10 +59,7 @@ class MovieSearchFragment : Fragment(), SearchListener {
                 val bundle = Bundle()
                 bundle.putString(AppConstants.ID, navBundle.id)
 
-                navigateWithBundleID(
-                    navBundle.destinationId,
-                    bundle
-                )
+                navigateWithBundleID(navBundle.destinationId, bundle)
                 viewModel.userNavigated()
             }
         }

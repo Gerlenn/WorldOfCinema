@@ -1,11 +1,13 @@
 package app.worldofcinema.presentation.view.movies.fragments.favorites
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieFavoritesInteractor
+import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.presentation.view.movies.model.favoritesfragment.FavoritesModel
 import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,16 +17,16 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieFavoritesViewModel @Inject constructor(
     private val movieFavoritesInteractor: MovieFavoritesInteractor,
+    private val context: Context,
 ) : ViewModel() {
+
+    private lateinit var check: InternetConnection
 
     private val _favoritesMovies = MutableLiveData<List<FavoritesModel>>()
     val favoritesMovies = _favoritesMovies
 
-    private val _errorGetFav = MutableLiveData<Int>()
-    val errorGetFav: LiveData<Int> = _errorGetFav
-
-    private val _errorDelFav = MutableLiveData<Int>()
-    val errorDelFav: LiveData<Int> = _errorDelFav
+    private val _error = MutableLiveData<Int>()
+    val error: LiveData<Int> = _error
 
     private val _logoutUser = MutableLiveData<Int?>()
     val logoutUser: LiveData<Int?> = _logoutUser
@@ -40,7 +42,7 @@ class MovieFavoritesViewModel @Inject constructor(
                     _favoritesMovies.value = listFavorites
                 }
             } catch (e: Exception) {
-                _errorGetFav.value = R.string.get_favorite_error
+                _error.value = R.string.get_favorite_error
             }
         }
     }
@@ -50,7 +52,7 @@ class MovieFavoritesViewModel @Inject constructor(
             try {
                 movieFavoritesInteractor.deleteFavItemById(id)
             } catch (e: Exception) {
-                _errorDelFav.value = R.string.delete_favorite_error
+                _error.value = R.string.delete_favorite_error
             }
         }
     }
@@ -68,8 +70,13 @@ class MovieFavoritesViewModel @Inject constructor(
     }
 
     fun onMovieSelected(id: String) {
-        _bundle.value = NavigateWithId(
-            R.id.action_movieFavoritesFragment_to_movieDetailsFragment, id
-        )
+        check = InternetConnection(context)
+        if (check.isOnline()) {
+            _bundle.value = NavigateWithId(
+                R.id.action_movieFavoritesFragment_to_movieDetailsFragment, id
+            )
+        } else {
+            _error.value = R.string.errorInternet
+        }
     }
 }

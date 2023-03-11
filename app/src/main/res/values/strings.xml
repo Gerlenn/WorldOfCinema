@@ -16,17 +16,23 @@
     <string name="main">main</string>
     <string name="favorites">favorites</string>
     <string name="enter_movie">enter movie</string>
-    <string name="short_input">short input, enter more characters</string>
-    <string name="search_error">search error</string>
+    <string name="short_input">short input, enter more characters!</string>
+    <string name="search_error">Search error</string>
     <string name="favorites_text_fragment">Favorites</string>
-    <string name="get_favorite_error">get favorite error</string>
-    <string name="delete_favorite_error">delete favorite error</string>
-    <string name="error_get_movie_details">error get movie details</string>
-    <string name="error_fav_selected">error favorite selected</string>
-    <string name="error_fav_delete">error favorite delete</string>
-    <string name="error_login_user">login error</string>
+    <string name="get_favorite_error">Get favorite error</string>
+    <string name="delete_favorite_error">Delete favorite error</string>
+    <string name="error_get_movie_details">Error get movie details</string>
+    <string name="error_fav_selected">Error favorite selected</string>
+    <string name="error_fav_delete">Error favorite delete</string>
+    <string name="error_login_user">Login error</string>
     <string name="invalid_username">Login invalid!</string>
     <string name="invalid_password">Password invalid!</string>
     <string name="log_out">Log out</string>
+    <string name="errorInternet">Please check your internet connection!</string>
+    <string name="error_get_movies">Error get movies</string>
+    <string name="error_show_movies">Error show movies</string>
+    <string name="error_select_movies">Error select movies</string>
+    <string name="exceptionHandler_called">ExceptionHandler called</string>
+    <string name="nothing_fount">Nothing found</string>
 
 </resources>

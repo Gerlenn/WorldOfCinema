@@ -43,12 +43,8 @@ class MovieDetailsFragment : Fragment() {
             id?.let { viewModel.getMovieDetailsById(it) }
         }
 
-        viewModel.errorGetMovieDetails.observe(viewLifecycleOwner) { errGetDetails ->
-            Toast.makeText(context, getString(errGetDetails), Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.errorFavSelected.observe(viewLifecycleOwner) { errFavSelected ->
-            Toast.makeText(context, getString(errFavSelected), Toast.LENGTH_SHORT).show()
+        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            Toast.makeText(context, getString(errorMsg), Toast.LENGTH_SHORT).show()
         }
 
         viewModel.movie.observe(viewLifecycleOwner) { detailsModel ->
@@ -68,8 +64,8 @@ class MovieDetailsFragment : Fragment() {
             viewBinding.detAwards.text = detailsModel.awards
             viewBinding.detStars.text = detailsModel.stars
             Picasso.get().load(Uri.parse(detailsModel.image)).into(viewBinding.detImage)
-            Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl))
-                .resize(308, 171).into(viewBinding.detImageTrailer)
+            Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl)).resize(308, 171)
+                .into(viewBinding.detImageTrailer)
 
             val stateFavorit = detailsModel.isFavorite!!
 //            viewBinding.btnFavorite.isSelected = detailsModel.isFavorite!!
