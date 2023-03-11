@@ -13,6 +13,8 @@ import app.worldofcinema.R
 import app.worldofcinema.databinding.FragmentMovieFavoritesBinding
 import app.worldofcinema.presentation.view.movies.fragments.favorites.adapter.FavoritesAdapter
 import app.worldofcinema.presentation.view.movies.fragments.favorites.adapter.listener.FavoritesListener
+import app.worldofcinema.utils.AppConstants
+import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,7 +60,7 @@ class MovieFavoritesFragment : Fragment(), FavoritesListener {
         viewModel.logoutUser.observe(viewLifecycleOwner){ logOut ->
             if (logOut != null) {
                 val navGraph = findNavController().navInflater.inflate(logOut)
-                navGraph.setStartDestination(R.id.loginFragment)
+                navGraph.startDestination = R.id.loginFragment
                 findNavController().graph = navGraph
             }
         }
@@ -66,9 +68,26 @@ class MovieFavoritesFragment : Fragment(), FavoritesListener {
         viewBinding.logOut.setOnClickListener {
             viewModel.logOutUser()
         }
+
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val bundle = Bundle()
+                bundle.putString(AppConstants.ID, navBundle.id)
+
+                navigateWithBundleID(
+                    navBundle.destinationId,
+                    bundle
+                )
+                viewModel.userNavigated()
+            }
+        }
     }
 
     override fun onDeleteClicked(id: String) {
         viewModel.deleteFavorite(id)
+    }
+
+    override fun onMovieSelected(id: String) {
+        viewModel.onMovieSelected(id)
     }
 }
