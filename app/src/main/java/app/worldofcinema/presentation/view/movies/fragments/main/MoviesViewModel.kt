@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MoviesInteractor
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
+import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -61,8 +62,3 @@ class MoviesViewModel @Inject constructor(
         _bundle.value = null
     }
 }
-
-data class NavigateWithId(
-    val destinationId: Int,
-    val id: String,
-)

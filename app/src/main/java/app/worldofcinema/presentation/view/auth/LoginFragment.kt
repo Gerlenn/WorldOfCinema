@@ -31,7 +31,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.signIn.setOnClickListener {
-
             val username = viewBinding.etName.text.toString()
             val password = viewBinding.etPassword.text.toString()
             viewModel.validateCredentials(username, password)

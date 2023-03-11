@@ -12,7 +12,7 @@ class MovieFavoritesInteractor @Inject constructor(
         return movieFavoritesRepository.getFavorites()
     }
 
-    suspend fun deleteFavItemById(id: String){
+    suspend fun deleteFavItemById(id: String) {
         movieFavoritesRepository.deleteFavoriteById(id)
     }
 

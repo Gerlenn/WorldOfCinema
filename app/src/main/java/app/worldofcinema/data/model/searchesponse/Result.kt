@@ -4,5 +4,5 @@ data class Result(
     val id: String,
     val description: String,
     val image: String,
-    val title: String
+    val title: String,
 )

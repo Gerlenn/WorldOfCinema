@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +17,8 @@
         app:layout_constraintHorizontal_bias="0.302"
         app:layout_constraintStart_toEndOf="@+id/detTitle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024"/>
+        app:layout_constraintVertical_bias="0.024"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/detImage"
@@ -27,10 +29,11 @@
         app:layout_constraintHorizontal_bias="0.050"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.026"
+        tools:ignore="ContentDescription" />
 
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detTitle"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
@@ -44,11 +47,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detYear"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:text=""
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,12 +60,11 @@
         app:layout_constraintTop_toBottomOf="@+id/detTitle"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detCountries"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:layout_marginStart="5dp"
-        android:text=""
         android:textColor="@color/helperText"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detTitle"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detGenres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,12 +86,11 @@
         app:layout_constraintTop_toBottomOf="@+id/detYear"
         app:layout_constraintVertical_bias="0.01" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detImDbRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text=""
         android:textColor="@color/helperText"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -116,10 +116,11 @@
             android:layout_width="308dp"
             android:layout_height="171dp"
             android:layout_x="-2dp"
-            android:layout_y="3dp" />
+            android:layout_y="3dp"
+            tools:ignore="ContentDescription" />
     </WebView>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detDescription"
         android:layout_width="95dp"
         android:layout_height="22dp"
@@ -134,11 +135,10 @@
         app:layout_constraintTop_toBottomOf="@+id/detTrailer"
         app:layout_constraintVertical_bias="0.036" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detPlot"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text=""
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="italic"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detDescription"
         app:layout_constraintVertical_bias="0.035" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detAwardsText"
         android:layout_width="95dp"
         android:layout_height="22dp"
@@ -164,13 +164,12 @@
         app:layout_constraintTop_toBottomOf="@+id/detPlot"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detAwards"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text=""
         android:textColor="@color/helperText"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -180,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detAwardsText"
         app:layout_constraintVertical_bias="0.006" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detStarsText"
         android:layout_width="95dp"
         android:layout_height="22dp"
@@ -196,12 +195,11 @@
         app:layout_constraintTop_toBottomOf="@+id/detAwards"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detStars"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text=""
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"

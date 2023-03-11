@@ -24,7 +24,7 @@ interface ApiService {
     @GET("Title/$API_KEY/{id}/Trailer")
     suspend fun getDetailsMovieById(@Path("id") movieId: String): Response<DetailsResponse>
 
-    @GET("Search/$API_KEY/{text}")
+    @GET("SearchMovie/$API_KEY/{text}")
     suspend fun searchMovies(@Path("text") searchText: String): Response<SearchResponse>
 }
 

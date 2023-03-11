@@ -48,7 +48,7 @@ class MoviesFragment : Fragment(), MovieListener {
             mainRecyclerAdapter.submitList(listItems)
         }
 
-        viewModel.error.observe(viewLifecycleOwner){
+        viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 

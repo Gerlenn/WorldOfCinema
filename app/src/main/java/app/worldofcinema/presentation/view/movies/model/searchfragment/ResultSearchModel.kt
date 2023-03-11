@@ -6,8 +6,8 @@ data class ResultSearchModel(
     val id: String,
     val description: String,
     val image: String,
-    val title: String
-){
+    val title: String,
+) {
     constructor(result: Result) : this(
         result.id,
         result.description,
