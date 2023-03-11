@@ -1,11 +1,13 @@
 package app.worldofcinema.presentation.view.movies.fragments.favorites
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MovieFavoritesInteractor
+import app.worldofcinema.presentation.view.movies.fragments.main.NavigateWithId
 import app.worldofcinema.presentation.view.movies.model.favoritesfragment.FavoritesModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +29,9 @@ class MovieFavoritesViewModel @Inject constructor(
 
     private val _logoutUser = MutableLiveData<Int?>()
     val logoutUser: LiveData<Int?> = _logoutUser
+
+    private val _bundle = MutableLiveData<NavigateWithId?>()
+    val bundle: LiveData<NavigateWithId?> = _bundle
 
     fun getFavorites() {
         viewModelScope.launch {
@@ -56,5 +61,15 @@ class MovieFavoritesViewModel @Inject constructor(
             movieFavoritesInteractor.logoutUser()
             _logoutUser.value = R.navigation.auth_graph
         }
+    }
+
+    fun userNavigated() {
+        _bundle.value = null
+    }
+
+    fun onMovieSelected(id: String) {
+        _bundle.value = NavigateWithId(
+            R.id.action_movieFavoritesFragment_to_movieDetailsFragment, id
+        )
     }
 }

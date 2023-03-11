@@ -68,7 +68,6 @@ class MovieSearchFragment : Fragment(), SearchListener {
             }
         }
 
-
         viewBinding.searchText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(searchText: String?): Boolean {
                 return false

@@ -3,4 +3,6 @@ package app.worldofcinema.presentation.view.movies.fragments.favorites.adapter.l
 interface FavoritesListener {
 
     fun onDeleteClicked(id: String)
+
+    fun onMovieSelected(id: String)
 }

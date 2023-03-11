@@ -60,7 +60,7 @@ class MovieDetailsFragment : Fragment() {
             viewBinding.detYear.text = detailsModel.year
             viewBinding.detCountries.text = detailsModel.countries
             viewBinding.detGenres.text = detailsModel.genres
-            if (viewBinding.detImDbRating.text != null && viewBinding.detImDbRating.text.isNotEmpty()) {
+            if (viewBinding.detImDbRating.text != null && viewBinding.detImDbRating.text.isEmpty()) {
                 viewBinding.detImDbRating.text = "$RATING ${detailsModel.imDbRating}"
             } else {
                 viewBinding.detImDbRating.text = ""

@@ -28,5 +28,9 @@ class FavoritesViewHolder(
         viewBinding.favoriteDelete.setOnClickListener {
             favoritesListener.onDeleteClicked(favoritesModel.id)
         }
+
+        itemView.setOnClickListener {
+            favoritesListener.onMovieSelected(favoritesModel.id)
+        }
     }
 }
