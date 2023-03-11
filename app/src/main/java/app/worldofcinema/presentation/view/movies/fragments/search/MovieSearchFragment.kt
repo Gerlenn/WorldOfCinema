@@ -1,6 +1,7 @@
 package app.worldofcinema.presentation.view.movies.fragments.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.worldofcinema.databinding.FragmentMovieSearchBinding
 import app.worldofcinema.presentation.view.movies.fragments.search.adapter.SearchAdapter
+import app.worldofcinema.presentation.view.movies.fragments.search.adapter.listener.SearchListener
+import app.worldofcinema.utils.AppConstants
+import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieSearchFragment : Fragment() {
+class MovieSearchFragment : Fragment(), SearchListener {
 
     private val viewModel: MovieSearchViewModel by viewModels()
 
@@ -34,7 +38,7 @@ class MovieSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieSearchAdapter = SearchAdapter()
+        movieSearchAdapter = SearchAdapter(this)
         val recyclerView = viewBinding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = movieSearchAdapter
@@ -51,6 +55,20 @@ class MovieSearchFragment : Fragment() {
             Toast.makeText(context, getString(searchError), Toast.LENGTH_SHORT).show()
         }
 
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val bundle = Bundle()
+                bundle.putString(AppConstants.ID, navBundle.id)
+
+                navigateWithBundleID(
+                    navBundle.destinationId,
+                    bundle
+                )
+                viewModel.userNavigated()
+            }
+        }
+
+
         viewBinding.searchText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(searchText: String?): Boolean {
                 return false
@@ -61,5 +79,9 @@ class MovieSearchFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    override fun onMovieSelected(id: String) {
+        viewModel.onMovieSelected(id)
     }
 }

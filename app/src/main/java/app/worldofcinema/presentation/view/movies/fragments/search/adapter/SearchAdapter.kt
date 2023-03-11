@@ -4,10 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.databinding.SearchFilmBinding
+import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
+import app.worldofcinema.presentation.view.movies.fragments.search.adapter.listener.SearchListener
 import app.worldofcinema.presentation.view.movies.model.searchfragment.ResultSearchModel
 import app.worldofcinema.presentation.view.movies.model.searchfragment.SearchModel
 
 class SearchAdapter(
+    private val searchListener: SearchListener,
 ) : RecyclerView.Adapter<SearchViewHolder>() {
 
     private var searchMovies = mutableListOf<ResultSearchModel>()
@@ -24,7 +27,7 @@ class SearchAdapter(
             parent,
             false
         )
-        return SearchViewHolder(viewBinding)
+        return SearchViewHolder(viewBinding, searchListener)
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {

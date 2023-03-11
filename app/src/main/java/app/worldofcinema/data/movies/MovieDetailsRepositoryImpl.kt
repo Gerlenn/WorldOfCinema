@@ -33,7 +33,7 @@ class MovieDetailsRepositoryImpl @Inject constructor(
                     it.year,
                     it.trailer?.linkEmbed,
                     it.trailer?.thumbnailUrl,
-                    favoriteState.isFavorite
+                    //favoriteState.isFavorite
                 )
             }
             details!!
