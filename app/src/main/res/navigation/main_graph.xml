@@ -28,5 +28,9 @@
         android:id="@+id/movieSearchFragment"
         android:name="app.worldofcinema.presentation.view.movies.fragments.search.MovieSearchFragment"
         android:label="fragment_movie_search"
-        tools:layout="@layout/fragment_movie_search" />
+        tools:layout="@layout/fragment_movie_search" >
+        <action
+            android:id="@+id/action_movieSearchFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 </navigation>

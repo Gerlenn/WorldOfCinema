@@ -60,7 +60,12 @@ class MovieDetailsFragment : Fragment() {
             viewBinding.detYear.text = detailsModel.year
             viewBinding.detCountries.text = detailsModel.countries
             viewBinding.detGenres.text = detailsModel.genres
-            viewBinding.detImDbRating.text = "$RATING ${detailsModel.imDbRating}"
+            if (viewBinding.detImDbRating.text != null && viewBinding.detImDbRating.text.isNotEmpty()) {
+                viewBinding.detImDbRating.text = "$RATING ${detailsModel.imDbRating}"
+            } else {
+                viewBinding.detImDbRating.text = ""
+            }
+
             viewBinding.detPlot.text = detailsModel.plot
             viewBinding.detAwards.text = detailsModel.awards
             viewBinding.detStars.text = detailsModel.stars
@@ -68,9 +73,11 @@ class MovieDetailsFragment : Fragment() {
             Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl))
                 .resize(308, 171).into(viewBinding.detImageTrailer)
 
-            viewBinding.btnFavorite.isSelected = detailsModel.isFavorite!!
+            val stateFavorit = detailsModel.isFavorite!!
+//            viewBinding.btnFavorite.isSelected = detailsModel.isFavorite!!
 
             viewBinding.btnFavorite.setOnClickListener {
+                viewBinding.btnFavorite.isSelected = !stateFavorit
                 viewModel.favoriteSelected(detailsModel.id, !it.isSelected)
             }
         }
