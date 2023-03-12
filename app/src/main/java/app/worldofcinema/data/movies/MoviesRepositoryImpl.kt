@@ -78,15 +78,15 @@ class MoviesRepositoryImpl @Inject constructor(
                 response?.body()?.items?.let { listMovies ->
                     moviesDAO.insertCategoryEntity(category)
                     val shortTopMoviesList = listMovies.take(20)
-                    shortTopMoviesList.map {
+                    shortTopMoviesList.map { movie ->
                         val moviesEntity =
                             MoviesEntity(
-                                it.id,
+                                movie.id,
                                 category.id,
-                                it.imDbRating,
-                                it.image,
-                                it.title,
-                                it.year
+                                movie.imDbRating,
+                                movie.image,
+                                movie.title,
+                                movie.year
                             )
                         moviesDAO.insertMoviesEntity(moviesEntity)
                     }
