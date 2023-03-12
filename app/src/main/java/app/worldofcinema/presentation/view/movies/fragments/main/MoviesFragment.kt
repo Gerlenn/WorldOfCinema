@@ -42,8 +42,6 @@ class MoviesFragment : Fragment(), MovieListener {
 
         viewModel.getData()
 
-        viewModel.showAllMovies()
-
         viewModel.items.observe(viewLifecycleOwner) { listItems ->
             mainRecyclerAdapter.submitList(listItems)
         }

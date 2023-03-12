@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MoviesInteractor
-import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
+import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -40,13 +40,14 @@ class MoviesViewModel @Inject constructor(
             try {
                 val fetch = async { moviesInteractor.getAllMovies() }
                 fetch.await()
+                showAllMovies()
             } catch (e: Exception) {
                 _error.value = R.string.error_get_movies
             }
         }
     }
 
-    fun showAllMovies() {
+    private fun showAllMovies() {
         viewModelScope.launch {
             try {
                 val listMovies = moviesInteractor.showAllMovies()
