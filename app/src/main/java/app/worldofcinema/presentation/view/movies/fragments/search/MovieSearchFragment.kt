@@ -66,11 +66,11 @@ class MovieSearchFragment : Fragment(), SearchListener {
 
         viewBinding.searchText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(searchText: String?): Boolean {
+                viewModel.findIMovies(searchText ?: "")
                 return false
             }
 
             override fun onQueryTextChange(searchText: String?): Boolean {
-                viewModel.findIMovies(searchText ?: "")
                 return false
             }
         })

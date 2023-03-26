@@ -34,5 +34,7 @@
     <string name="error_select_movies">Error select movies</string>
     <string name="exceptionHandler_called">ExceptionHandler called</string>
     <string name="nothing_fount">Nothing found</string>
+    <string name="error_get_category_movies">Error get category movies</string>
+    <string name="error_select_category">Error select category</string>
 
 </resources>

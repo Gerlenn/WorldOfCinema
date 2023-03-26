@@ -17,7 +17,7 @@ class MovieDetailsRepositoryImpl @Inject constructor(
     override suspend fun getMovieDetailsById(id: String): DetailsModel {
         return withContext(Dispatchers.IO) {
             val response = apiService.getDetailsMovieById(id)
-            val favoriteState = moviesDAO.getStateFavorite(id)
+//            val favoriteState = moviesDAO.getStateFavorite(id)
             val details = response.body()?.let {
                 DetailsModel(
                     it.awards,
