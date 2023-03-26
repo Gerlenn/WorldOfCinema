@@ -8,7 +8,9 @@ import androidx.lifecycle.viewModelScope
 import app.worldofcinema.R
 import app.worldofcinema.domain.movies.MoviesInteractor
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
+import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 import app.worldofcinema.utils.InternetConnection
+import app.worldofcinema.utils.NavigateWithCategoryTitle
 import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -26,8 +28,8 @@ class MoviesViewModel @Inject constructor(
     private val _items = MutableLiveData<List<Category>>()
     val items: LiveData<List<Category>> = _items
 
-    private val _showId = MutableLiveData<String>()
-    val showId: LiveData<String> = _showId
+    private val _navigate = MutableLiveData<NavigateWithCategoryTitle?>()
+    val navigate: LiveData<NavigateWithCategoryTitle?> = _navigate
 
     private val _bundle = MutableLiveData<NavigateWithId?>()
     val bundle: LiveData<NavigateWithId?> = _bundle
@@ -72,7 +74,27 @@ class MoviesViewModel @Inject constructor(
         }
     }
 
+    fun onCategorySelected(categoryTitle: String) {
+        check = InternetConnection(context)
+        viewModelScope.launch {
+            try {
+                if (check.isOnline()) {
+                    _navigate.value = NavigateWithCategoryTitle(
+                        R.id.action_moviesFragment_to_categoryMoviesFragment, categoryTitle)
+                } else {
+                    _error.value = R.string.errorInternet
+                }
+            }catch (e: Exception) {
+                _error.value = R.string.error_select_category
+            }
+        }
+    }
+
     fun userNavigated() {
         _bundle.value = null
+    }
+
+    fun userNavigatedWithCategoryTitle() {
+        _navigate.value = null
     }
 }

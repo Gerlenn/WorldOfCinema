@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.MainRecyclerAdapter
+import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.CategoryMoviesListener
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
+import app.worldofcinema.utils.AppConstants.CATEGORY_TITLE
 import app.worldofcinema.utils.AppConstants.ID
 import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment(), MovieListener {
+class MoviesFragment : Fragment(), MovieListener, CategoryMoviesListener {
 
     private val viewModel: MoviesViewModel by viewModels()
 
@@ -37,7 +39,7 @@ class MoviesFragment : Fragment(), MovieListener {
         minCategoryRecycler = requireView().findViewById(R.id.main_recycler)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         minCategoryRecycler.layoutManager = layoutManager
-        mainRecyclerAdapter = MainRecyclerAdapter(requireContext(), this)
+        mainRecyclerAdapter = MainRecyclerAdapter(requireContext(), this, this)
         minCategoryRecycler.adapter = mainRecyclerAdapter
 
         viewModel.getData()
@@ -48,10 +50,6 @@ class MoviesFragment : Fragment(), MovieListener {
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.showId.observe(viewLifecycleOwner) { showId ->
-            Toast.makeText(context, showId, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
@@ -66,9 +64,26 @@ class MoviesFragment : Fragment(), MovieListener {
                 viewModel.userNavigated()
             }
         }
+
+        viewModel.navigate.observe(viewLifecycleOwner) { navigate ->
+            if (navigate != null) {
+                val bundle = Bundle()
+                bundle.putString(CATEGORY_TITLE, navigate.categoryTitle)
+
+                navigateWithBundleID(
+                    navigate.destinationId,
+                    bundle
+                )
+                viewModel.userNavigatedWithCategoryTitle()
+            }
+        }
     }
 
     override fun onMovieSelected(id: String) {
         viewModel.onMovieSelected(id)
+    }
+
+    override fun onCategorySelected(categoryTitle: String) {
+        viewModel.onCategorySelected(categoryTitle)
     }
 }

@@ -12,4 +12,6 @@ object AppConstants {
     const val COMING_SOON_CATEGORY_ID = 3
     const val COMING_SOON_CATEGORY_TITLE = "Coming Soon"
     const val ID = "ID"
+    const val CATEGORY_TITLE = "CATEGORY ID"
+
 }
