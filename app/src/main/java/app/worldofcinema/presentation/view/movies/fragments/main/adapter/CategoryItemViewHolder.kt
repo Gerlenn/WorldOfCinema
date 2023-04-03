@@ -2,6 +2,7 @@ package app.worldofcinema.presentation.view.movies.fragments.main.adapter
 
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
+import app.worldofcinema.R
 import app.worldofcinema.databinding.ItemFilmBinding
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
@@ -18,7 +19,11 @@ class CategoryItemViewHolder(
         viewBinding.date.text = moviesModel.year
         viewBinding.imDbRating.text = moviesModel.imDbRating
 
-        Picasso.get().load(Uri.parse(moviesModel.image)).resize(230, 280)
+        Picasso.get()
+            .load(Uri.parse(moviesModel.image))
+            .fit()
+            .centerCrop()
+            .placeholder(R.drawable.ic_main_noimgfilm)
             .into(viewBinding.movieImage)
 
         if (moviesModel.imDbRating != null && !moviesModel.imDbRating.isEmpty()) {

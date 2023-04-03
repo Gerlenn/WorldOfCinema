@@ -62,8 +62,8 @@ class CategoryMoviesFragment : Fragment(), MovieListener {
         val bundle = arguments
         bundle?.let { safeBundle ->
             val title = safeBundle.getString(AppConstants.CATEGORY_TITLE)
-            title?.let {
-                viewModel.showCategoryMovies(it)
+            title?.let { categoryTitle ->
+                viewModel.showCategoryMovies(categoryTitle)
                 viewBinding.catTitle.text = title
             }
         }

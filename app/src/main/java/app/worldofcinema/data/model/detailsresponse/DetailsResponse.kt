@@ -25,4 +25,8 @@ data class DetailsResponse(
     val year: String,
     @SerializedName("trailer")
     val trailer: Trailer?,
+    @SerializedName("actorList")
+    val actorList: List<ActorResponse>,
+    @SerializedName("images")
+    val images: Images?
 )

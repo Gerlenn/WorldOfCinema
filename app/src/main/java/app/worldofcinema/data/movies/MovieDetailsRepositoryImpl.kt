@@ -4,7 +4,9 @@ import app.worldofcinema.data.database.dao.MoviesDAO
 import app.worldofcinema.data.database.entities.FavoritesEntity
 import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.domain.movies.MovieDetailsRepository
+import app.worldofcinema.presentation.view.movies.model.detailsfragment.Actor
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
+import app.worldofcinema.presentation.view.movies.model.detailsfragment.LinkImg
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -16,22 +18,37 @@ class MovieDetailsRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieDetailsById(id: String): DetailsModel {
         return withContext(Dispatchers.IO) {
+
             val response = apiService.getDetailsMovieById(id)
 //            val favoriteState = moviesDAO.getStateFavorite(id)
-            val details = response.body()?.let {
+            val details = response.body()?.let { movie ->
                 DetailsModel(
-                    it.awards,
-                    it.countries,
-                    it.id,
-                    it.imDbRating,
-                    it.image,
-                    it.plot,
-                    it.stars,
-                    it.genres,
-                    it.title,
-                    it.year,
-                    it.trailer?.linkEmbed,
-                    it.trailer?.thumbnailUrl,
+                    movie.awards,
+                    movie.countries,
+                    movie.id,
+                    movie.imDbRating,
+                    movie.image,
+                    movie.plot,
+                    movie.stars,
+                    movie.genres,
+                    movie.title,
+                    movie.year,
+                    movie.trailer?.linkEmbed,
+                    movie.trailer?.thumbnailUrl,
+
+                    movie.actorList.take(10).map { actor ->
+                        Actor(
+                            actor.id,
+                            actor.image,
+                            actor.name
+                        )
+                    },
+
+                    movie.images?.items?.take(5)?.map { movieImg ->
+                        LinkImg(
+                            movieImg.image
+                        )
+                    }
                     //favoriteState.isFavorite
                 )
             }

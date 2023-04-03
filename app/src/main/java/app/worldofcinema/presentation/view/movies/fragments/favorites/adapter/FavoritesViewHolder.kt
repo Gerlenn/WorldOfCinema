@@ -2,6 +2,7 @@ package app.worldofcinema.presentation.view.movies.fragments.favorites.adapter
 
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
+import app.worldofcinema.R
 import app.worldofcinema.databinding.FavoritesFilmBinding
 import app.worldofcinema.presentation.view.movies.fragments.favorites.adapter.listener.FavoritesListener
 import app.worldofcinema.presentation.view.movies.model.favoritesfragment.FavoritesModel
@@ -17,7 +18,12 @@ class FavoritesViewHolder(
         viewBinding.favoriteDate.text = favoritesModel.year
         viewBinding.favoriteImDbRating.text = favoritesModel.imDbRating
         viewBinding.favoriteTitleMovie.text = favoritesModel.title
-        Picasso.get().load(Uri.parse(favoritesModel.image)).into(viewBinding.favoriteMovieImage)
+        Picasso.get()
+            .load(Uri.parse(favoritesModel.image))
+            .fit()
+            .centerCrop()
+            .placeholder(R.drawable.ic_main_noimgfilm)
+            .into(viewBinding.favoriteMovieImage)
 
         if (favoritesModel.imDbRating != null && !favoritesModel.imDbRating.isEmpty()) {
             viewBinding.favoriteImDbRating.text = "$RATING ${viewBinding.favoriteImDbRating.text}"

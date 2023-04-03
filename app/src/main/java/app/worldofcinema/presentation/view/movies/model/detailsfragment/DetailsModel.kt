@@ -13,5 +13,7 @@ data class DetailsModel(
     val year: String,
     val linkEmbed: String?,
     val thumbnailUrl: String?,
+    val actor: List<Actor>,
+    val items: List<LinkImg>?,
     val isFavorite: Boolean? = false,
 )
