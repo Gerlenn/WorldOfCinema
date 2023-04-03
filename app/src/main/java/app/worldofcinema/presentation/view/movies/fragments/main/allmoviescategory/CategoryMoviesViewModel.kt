@@ -31,12 +31,12 @@ class CategoryMoviesViewModel @Inject constructor(
     private val _bundle = MutableLiveData<NavigateWithId?>()
     val bundle: LiveData<NavigateWithId?> = _bundle
 
-    fun showCategoryMovies(searchText: String) {
+    fun showCategoryMovies(categoryTitle: String) {
         check = InternetConnection(context)
         viewModelScope.launch {
             try {
                 if (check.isOnline()) {
-                    val listMovies = movieCategoryInteractor.showCategoryMovies(searchText)
+                    val listMovies = movieCategoryInteractor.showCategoryMovies(categoryTitle)
                     _listMovie.value = listMovies
                 } else {
                     _error.value = R.string.errorInternet

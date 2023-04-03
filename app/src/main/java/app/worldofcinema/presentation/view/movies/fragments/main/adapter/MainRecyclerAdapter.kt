@@ -9,7 +9,6 @@ import app.worldofcinema.databinding.MainRecyclerRowItemBinding
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.CategoryMoviesListener
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.Category
-import app.worldofcinema.presentation.view.movies.model.moviesfragment.CategoryMovies
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
 
 class MainRecyclerAdapter(

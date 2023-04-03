@@ -2,26 +2,33 @@ package app.worldofcinema.presentation.view.movies.fragments.details
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.worldofcinema.R
 import app.worldofcinema.databinding.FragmentMovieDetailsBinding
-import app.worldofcinema.utils.AppConstants
+import app.worldofcinema.presentation.view.movies.fragments.details.adapter.ActorsAdapter
+import app.worldofcinema.presentation.view.movies.fragments.details.adapter.ImagesAdapter
+import app.worldofcinema.presentation.view.movies.fragments.details.adapter.listener.ActorsListener
 import app.worldofcinema.utils.AppConstants.ID
 import app.worldofcinema.utils.AppConstants.RATING
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
+const val DESCRIPTION = "Description"
+const val STARS = "Stars"
+const val MAIN_CAST = "Main cast"
+const val IMAGES = "Images"
+const val AWARDS = "Awards"
+
 @AndroidEntryPoint
-class MovieDetailsFragment : Fragment() {
+class MovieDetailsFragment : Fragment(), ActorsListener {
 
     private lateinit var webView: WebView
 
@@ -29,6 +36,9 @@ class MovieDetailsFragment : Fragment() {
 
     private var _viewBinding: FragmentMovieDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private lateinit var actorsAdapter: ActorsAdapter
+    private lateinit var imagesAdapter: ImagesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +50,18 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        actorsAdapter = ActorsAdapter(this)
+        val recyclerView = viewBinding.recyclerView
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = actorsAdapter
+
+        imagesAdapter = ImagesAdapter()
+        val imagesRecyclerView = viewBinding.recyclerViewImages
+        imagesRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        imagesRecyclerView.adapter = imagesAdapter
 
         val bundle = arguments
         bundle?.let { safeBundle ->
@@ -60,9 +82,16 @@ class MovieDetailsFragment : Fragment() {
             webView.settings.javaScriptEnabled = true
 
             val videoId = detailsModel.linkEmbed
-            val html =
-                "<html><body><div style=\"width: 88%; margin: 0 auto;\"><iframe frameborder=\"no\" width=\"100%\" height=\"100%\" src=\"$videoId\"></iframe></div></body></html>"
+            val html = "<html><body><div style=\"width: 88%; margin: 0 auto;\">" +
+                    "<iframe frameborder=\"no\" width=\"100%\" height=\"100%\" src=\"$videoId\"></iframe>" +
+                    "</div></body></html>"
+
             webView.loadData(html, "text/html", "utf-8")
+
+            viewBinding.detDescription.text = DESCRIPTION
+            viewBinding.detStarsText.text = STARS
+            viewBinding.detMainCastText.text = MAIN_CAST
+            viewBinding.imgText.text = IMAGES
 
             viewBinding.detTitle.text = detailsModel.title
             viewBinding.detYear.text = detailsModel.year
@@ -78,7 +107,7 @@ class MovieDetailsFragment : Fragment() {
             viewBinding.detPlot.text = detailsModel.plot
 
             if (detailsModel.awards != null && !detailsModel.awards.isEmpty()) {
-                viewBinding.detAwardsText.text = getString(R.string.awards)
+                viewBinding.detAwardsText.text = AWARDS
                 viewBinding.detAwards.text = "${detailsModel.awards}"
             } else {
                 viewBinding.detAwardsText.visibility = View.GONE
@@ -86,9 +115,25 @@ class MovieDetailsFragment : Fragment() {
             }
 
             viewBinding.detStars.text = detailsModel.stars
-            Picasso.get().load(Uri.parse(detailsModel.image)).into(viewBinding.detImage)
-            Picasso.get().load(Uri.parse(detailsModel.thumbnailUrl)).resize(308, 171)
+
+            Picasso.get()
+                .load(Uri.parse(detailsModel.image))
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.ic_main_noimgfilm)
+                .priority(Picasso.Priority.HIGH)
+                .into(viewBinding.detImage)
+
+            Picasso.get()
+                .load(Uri.parse(detailsModel.thumbnailUrl))
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.ic_details_noimg)
                 .into(viewBinding.detImageTrailer)
+
+            actorsAdapter.submitList(detailsModel.actor)
+
+            detailsModel.items?.let { imagesAdapter.submitList(it) }
 
             val stateFavorit = detailsModel.isFavorite!!
 //            viewBinding.btnFavorite.isSelected = detailsModel.isFavorite!!

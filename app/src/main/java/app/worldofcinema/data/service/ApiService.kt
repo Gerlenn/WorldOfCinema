@@ -21,7 +21,7 @@ interface ApiService {
     @GET("ComingSoon/$API_KEY")
     suspend fun getComingSoonMovies(): Response<MoviesResponse>
 
-    @GET("Title/$API_KEY/{id}/Trailer")
+    @GET("Title/$API_KEY/{id}/FullActor,Images,Trailer")
     suspend fun getDetailsMovieById(@Path("id") movieId: String): Response<DetailsResponse>
 
     @GET("SearchMovie/$API_KEY/{text}")
