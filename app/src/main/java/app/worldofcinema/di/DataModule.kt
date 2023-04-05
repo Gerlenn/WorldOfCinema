@@ -50,6 +50,11 @@ abstract class DataModule {
         movieCategoryRepositoryImpl: MovieCategoryRepositoryImpl,
     ): MovieCategoryRepository
 
+    @Binds
+    abstract fun bindMovieActorsRepository(
+        movieActorRepositoryImpl: MovieActorRepositoryImpl,
+    ): MovieActorRepository
+
     companion object {
 
         private const val SP_KEY = "SP_KEY"

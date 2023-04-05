@@ -1,7 +1,7 @@
 package app.worldofcinema.utils
 
 object AppConstants {
-    const val API_KEY = "k_ozf7qhes"//"k_4g99h4pg" k_3zazznbh k_ozf7qhes
+    const val API_KEY = "k_4g99h4pg"//"k_4g99h4pg" k_3zazznbh k_ozf7qhes
     const val RATING = "imDb: "
     const val TOP_MOVIES_CATEGORY_ID = 2
     const val TOP_MOVIES_CATEGORY_TITLE = "Top Movies"
@@ -13,5 +13,4 @@ object AppConstants {
     const val COMING_SOON_CATEGORY_TITLE = "Coming Soon"
     const val ID = "ID"
     const val CATEGORY_TITLE = "CATEGORY ID"
-
 }

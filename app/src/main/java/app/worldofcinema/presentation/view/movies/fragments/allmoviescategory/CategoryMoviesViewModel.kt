@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.fragments.main.allmoviescategory
+package app.worldofcinema.presentation.view.movies.fragments.allmoviescategory
 
 import android.content.Context
 import androidx.lifecycle.LiveData

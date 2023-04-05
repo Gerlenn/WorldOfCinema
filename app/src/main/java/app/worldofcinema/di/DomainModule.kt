@@ -53,4 +53,11 @@ class DomainModule {
     ): MovieCategoryInteractor {
         return MovieCategoryInteractor(movieCategoryRepository)
     }
+
+    @Provides
+    fun provideMovieActorsInteractor(
+        movieActorRepository: MovieActorRepository
+    ): MovieActorInteractor {
+        return MovieActorInteractor(movieActorRepository)
+    }
 }

@@ -1,10 +1,10 @@
-package app.worldofcinema.presentation.view.movies.fragments.details.adapter
+package app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter
 
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
 import app.worldofcinema.databinding.ActorFilmBinding
-import app.worldofcinema.presentation.view.movies.fragments.details.adapter.listener.ActorsListener
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.listener.ActorsListener
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.Actor
 import com.squareup.picasso.Picasso
 

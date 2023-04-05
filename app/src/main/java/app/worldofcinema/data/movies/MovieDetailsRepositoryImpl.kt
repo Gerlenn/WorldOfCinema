@@ -36,11 +36,12 @@ class MovieDetailsRepositoryImpl @Inject constructor(
                     movie.trailer?.linkEmbed,
                     movie.trailer?.thumbnailUrl,
 
-                    movie.actorList.take(10).map { actor ->
+                    movie.actorList.map { actor ->
                         Actor(
                             actor.id,
                             actor.image,
-                            actor.name
+                            actor.name,
+                            actor.asCharacter
                         )
                     },
 
