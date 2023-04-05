@@ -1,10 +1,10 @@
-package app.worldofcinema.presentation.view.movies.fragments.details.adapter
+package app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.databinding.ActorFilmBinding
-import app.worldofcinema.presentation.view.movies.fragments.details.adapter.listener.ActorsListener
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.listener.ActorsListener
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.Actor
 
 class ActorsAdapter(
@@ -15,7 +15,7 @@ class ActorsAdapter(
 
     fun submitList(list: List<Actor>) {
         this.actorList.clear()
-        this.actorList.addAll(list.toMutableList())
+        this.actorList.addAll(list.take(5).toMutableList())
         this.notifyDataSetChanged()
     }
 

@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.fragments.details.adapter
+package app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter
 
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView

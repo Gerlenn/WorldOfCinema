@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.fragments.main.allmoviescategory
+package app.worldofcinema.presentation.view.movies.fragments.allmoviescategory
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import app.worldofcinema.databinding.FragmentCategoryMoviesBinding
 import app.worldofcinema.presentation.view.movies.fragments.main.adapter.listener.MovieListener
-import app.worldofcinema.presentation.view.movies.fragments.main.allmoviescategory.adapter.MoviesInCategoryAdapter
+import app.worldofcinema.presentation.view.movies.fragments.allmoviescategory.adapter.MoviesInCategoryAdapter
 import app.worldofcinema.utils.AppConstants
 import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import dagger.hilt.android.AndroidEntryPoint

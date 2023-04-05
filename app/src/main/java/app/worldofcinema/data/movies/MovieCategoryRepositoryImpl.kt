@@ -1,11 +1,9 @@
 package app.worldofcinema.data.movies
 
-import app.worldofcinema.data.database.entities.MoviesEntity
 import app.worldofcinema.data.model.moviesesponse.MoviesResponse
 import app.worldofcinema.data.service.ApiService
 import app.worldofcinema.domain.movies.MovieCategoryRepository
 import app.worldofcinema.presentation.view.movies.model.moviesfragment.MoviesModel
-import app.worldofcinema.utils.AppConstants
 import app.worldofcinema.utils.AppConstants.COMING_SOON_CATEGORY_TITLE
 import app.worldofcinema.utils.AppConstants.IN_THEATERS_CATEGORY_TITLE
 import app.worldofcinema.utils.AppConstants.MOST_POPULAR_CATEGORY_TITLE
@@ -38,7 +36,8 @@ class MovieCategoryRepositoryImpl @Inject constructor(
                         movie.imDbRating,
                         movie.image,
                         movie.title,
-                        movie.year)
+                        movie.year
+                    )
                 }
             } ?: kotlin.run {
                 emptyList()

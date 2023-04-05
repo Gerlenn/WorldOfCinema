@@ -1,4 +1,4 @@
-package app.worldofcinema.presentation.view.movies.fragments.details
+package app.worldofcinema.presentation.view.movies.fragments.detailsmovie
 
 import android.net.Uri
 import android.os.Bundle
@@ -13,13 +13,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.worldofcinema.R
 import app.worldofcinema.databinding.FragmentMovieDetailsBinding
-import app.worldofcinema.presentation.view.movies.fragments.details.adapter.ActorsAdapter
-import app.worldofcinema.presentation.view.movies.fragments.details.adapter.ImagesAdapter
-import app.worldofcinema.presentation.view.movies.fragments.details.adapter.listener.ActorsListener
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.ActorsAdapter
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.ImagesAdapter
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.listener.ActorsListener
 import app.worldofcinema.utils.AppConstants.ID
 import app.worldofcinema.utils.AppConstants.RATING
+import app.worldofcinema.utils.BundleConstants.MOVIE_ID
+import app.worldofcinema.utils.BundleConstants.MOVIE_TITLE
+import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.Serializable
 
 const val DESCRIPTION = "Description"
 const val STARS = "Stars"
@@ -28,7 +32,7 @@ const val IMAGES = "Images"
 const val AWARDS = "Awards"
 
 @AndroidEntryPoint
-class MovieDetailsFragment : Fragment(), ActorsListener {
+class MovieDetailsFragment : Fragment(), ActorsListener, Serializable {
 
     private lateinit var webView: WebView
 
@@ -142,6 +146,25 @@ class MovieDetailsFragment : Fragment(), ActorsListener {
                 viewBinding.btnFavorite.isSelected = !stateFavorit
                 viewModel.favoriteSelected(detailsModel.id, !it.isSelected)
             }
+
+            viewBinding.allActors.setOnClickListener {
+                viewModel.onAllActorSelected(detailsModel.id, detailsModel.title)
+            }
+        }
+
+        viewModel.navigate.observe(viewLifecycleOwner) { navigate ->
+            if (navigate != null) {
+                val bundle = Bundle()
+                bundle.putString(MOVIE_ID, navigate.movieId)
+                bundle.putString(MOVIE_TITLE, navigate.movieTitle)
+
+
+                navigateWithBundleID(
+                    navigate.destinationId,
+                    bundle
+                )
+                viewModel.userNavigatedWithActorParam()
+            }
         }
 
         viewBinding.detImageTrailer.setOnClickListener {
@@ -149,3 +172,4 @@ class MovieDetailsFragment : Fragment(), ActorsListener {
         }
     }
 }
+

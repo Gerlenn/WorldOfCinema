@@ -20,9 +20,13 @@
 
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="app.worldofcinema.presentation.view.movies.fragments.details.MovieDetailsFragment"
+        android:name="app.worldofcinema.presentation.view.movies.fragments.detailsmovie.MovieDetailsFragment"
         android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details" >
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_fullActorsFragment"
+            app:destination="@id/fullActorsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieFavoritesFragment"
         android:name="app.worldofcinema.presentation.view.movies.fragments.favorites.MovieFavoritesFragment"
@@ -45,11 +49,16 @@
 
     <fragment
         android:id="@+id/categoryMoviesFragment"
-        android:name="app.worldofcinema.presentation.view.movies.fragments.main.allmoviescategory.CategoryMoviesFragment"
+        android:name="app.worldofcinema.presentation.view.movies.fragments.allmoviescategory.CategoryMoviesFragment"
         android:label="fragment_category_movies"
         tools:layout="@layout/fragment_category_movies" >
         <action
             android:id="@+id/action_categoryMoviesFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fullActorsFragment"
+        android:name="app.worldofcinema.presentation.view.movies.fragments.allactors.FullActorsFragment"
+        android:label="fragment_full_actors"
+        tools:layout="@layout/fragment_full_actors" />
 </navigation>
