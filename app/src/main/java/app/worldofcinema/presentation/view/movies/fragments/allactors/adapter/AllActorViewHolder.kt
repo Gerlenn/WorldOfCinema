@@ -4,11 +4,13 @@ import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import app.worldofcinema.R
 import app.worldofcinema.databinding.ActorFullcastBinding
+import app.worldofcinema.presentation.view.movies.fragments.detailsmovie.adapter.listener.ActorsListener
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.Actor
 import com.squareup.picasso.Picasso
 
 class AllActorViewHolder(
     private val viewBinding: ActorFullcastBinding,
+    private var actorsListener: ActorsListener,
 ) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(actor: Actor) {
@@ -21,5 +23,9 @@ class AllActorViewHolder(
             .fit()
             .centerCrop()
             .into(viewBinding.actorImg)
+
+        itemView.setOnClickListener {
+            actorsListener.onActorSelected(actor.id)
+        }
     }
 }

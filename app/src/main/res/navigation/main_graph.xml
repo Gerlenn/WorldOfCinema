@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_movieDetailsFragment_to_fullActorsFragment"
             app:destination="@id/fullActorsFragment" />
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_actorDetailsFragment"
+            app:destination="@id/actorDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFavoritesFragment"
@@ -60,5 +63,17 @@
         android:id="@+id/fullActorsFragment"
         android:name="app.worldofcinema.presentation.view.movies.fragments.allactors.FullActorsFragment"
         android:label="fragment_full_actors"
-        tools:layout="@layout/fragment_full_actors" />
+        tools:layout="@layout/fragment_full_actors" >
+        <action
+            android:id="@+id/action_fullActorsFragment_to_actorDetailsFragment"
+            app:destination="@id/actorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorDetailsFragment"
+        android:name="app.worldofcinema.presentation.view.movies.fragments.detailsactor.ActorDetailsFragment"
+        android:label="ActorDetailsFragment" >
+        <action
+            android:id="@+id/action_actorDetailsFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 </navigation>

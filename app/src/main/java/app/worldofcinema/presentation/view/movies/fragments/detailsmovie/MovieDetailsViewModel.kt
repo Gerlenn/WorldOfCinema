@@ -11,6 +11,7 @@ import app.worldofcinema.domain.movies.MovieFavoritesInteractor
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.DetailsModel
 import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.utils.NavigateWithActorParam
+import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,6 +36,9 @@ class MovieDetailsViewModel @Inject constructor(
 
     private val _bundle = MutableLiveData<NavigateWithActorParam?>()
     val bundle: LiveData<NavigateWithActorParam?> = _bundle
+
+    private val _bundleActor = MutableLiveData<NavigateWithId?>()
+    val bundleActor: LiveData<NavigateWithId?> = _bundleActor
 
 
     fun getMovieDetailsById(id: String) {
@@ -70,13 +74,30 @@ class MovieDetailsViewModel @Inject constructor(
                     _error.value = R.string.errorInternet
                 }
             } catch (e: Exception) {
-                _error.value = R.string.error_select_category
+                _error.value = R.string.error_select_all_actor
             }
         }
     }
 
     fun userNavigatedWithActorParam() {
         _navigate.value = null
+    }
+
+    fun onActorSelected(actorId: String) {
+        check = InternetConnection(context)
+        if (check.isOnline()) {
+            _bundleActor.value =
+                NavigateWithId(
+                    R.id.action_movieDetailsFragment_to_actorDetailsFragment,
+                    actorId
+                )
+        } else {
+            _error.value = R.string.errorInternet
+        }
+    }
+
+    fun userNavigated() {
+        _bundleActor.value = null
     }
 
     fun deleteFavorite(id: String) {

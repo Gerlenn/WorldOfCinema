@@ -10,6 +10,7 @@ import app.worldofcinema.domain.movies.MovieActorInteractor
 import app.worldofcinema.presentation.view.movies.model.detailsfragment.Actor
 import app.worldofcinema.utils.InternetConnection
 import app.worldofcinema.utils.NavigateWithActorParam
+import app.worldofcinema.utils.NavigateWithId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,8 +29,11 @@ class FullActorsFragmentViewModel @Inject constructor(
     private val _error = MutableLiveData<Int>()
     val error: LiveData<Int> = _error
 
-    private val _bundle = MutableLiveData<NavigateWithActorParam?>()
-    val bundle: LiveData<NavigateWithActorParam?> = _bundle
+    private val _bundleMovie = MutableLiveData<NavigateWithActorParam?>()
+    val bundleMovie: LiveData<NavigateWithActorParam?> = _bundleMovie
+
+    private val _bundleActor = MutableLiveData<NavigateWithId?>()
+    val bundleActor: LiveData<NavigateWithId?> = _bundleActor
 
     fun showActorsMovies(movieId: String) {
         check = InternetConnection(context)
@@ -47,7 +51,21 @@ class FullActorsFragmentViewModel @Inject constructor(
         }
     }
 
+    fun onActorSelected(actorId: String) {
+        check = InternetConnection(context)
+        if (check.isOnline()) {
+            _bundleActor.value =
+                NavigateWithId(
+                    R.id.action_fullActorsFragment_to_actorDetailsFragment,
+                    actorId
+                )
+        } else {
+            _error.value = R.string.errorInternet
+        }
+    }
+
     fun userNavigated() {
-        _bundle.value = null
+        _bundleMovie.value = null
+        _bundleActor.value = null
     }
 }
