@@ -1,5 +1,6 @@
 package app.worldofcinema.data.service
 
+import app.worldofcinema.data.model.actordetailsresponse.ActorDetailsResponse
 import app.worldofcinema.data.model.detailsresponse.ActorResponse
 import app.worldofcinema.data.model.detailsresponse.DetailsResponse
 import app.worldofcinema.data.model.moviesesponse.MoviesResponse
@@ -26,9 +27,12 @@ interface ApiService {
     suspend fun getDetailsMovieById(@Path("id") movieId: String): Response<DetailsResponse>
 
     @GET("Title/$API_KEY/{id}/FullActor")
-    suspend fun getAllActorsByMovieTitle(@Path("id") movieTitle: String): Response<DetailsResponse>
+    suspend fun getAllActorsByMovieTitle(@Path("id") movieId: String): Response<DetailsResponse>
 
     @GET("SearchMovie/$API_KEY/{text}")
     suspend fun searchMovies(@Path("text") searchText: String): Response<SearchResponse>
+
+    @GET("Name/$API_KEY/{id}")
+    suspend fun getDetailsActorById(@Path("id") actorId: String): Response<ActorDetailsResponse>
 }
 

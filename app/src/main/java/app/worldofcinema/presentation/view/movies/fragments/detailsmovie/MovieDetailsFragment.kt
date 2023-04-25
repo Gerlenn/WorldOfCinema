@@ -23,7 +23,6 @@ import app.worldofcinema.utils.BundleConstants.MOVIE_TITLE
 import app.worldofcinema.utils.NavigationHelper.navigateWithBundleID
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
 
 const val DESCRIPTION = "Description"
 const val STARS = "Stars"
@@ -32,7 +31,7 @@ const val IMAGES = "Images"
 const val AWARDS = "Awards"
 
 @AndroidEntryPoint
-class MovieDetailsFragment : Fragment(), ActorsListener, Serializable {
+class MovieDetailsFragment : Fragment(), ActorsListener {
 
     private lateinit var webView: WebView
 
@@ -170,6 +169,20 @@ class MovieDetailsFragment : Fragment(), ActorsListener, Serializable {
         viewBinding.detImageTrailer.setOnClickListener {
             viewBinding.detImageTrailer.visibility = View.GONE
         }
+
+        viewModel.bundleActor.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val bundle = Bundle()
+                bundle.putString(ID, navBundle.id)
+
+                navigateWithBundleID(navBundle.destinationId, bundle)
+                viewModel.userNavigated()
+            }
+        }
+    }
+
+    override fun onActorSelected(actorId: String) {
+        viewModel.onActorSelected(actorId)
     }
 }
 

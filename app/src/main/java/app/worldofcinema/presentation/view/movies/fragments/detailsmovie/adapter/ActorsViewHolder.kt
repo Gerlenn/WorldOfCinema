@@ -22,5 +22,8 @@ class ActorsViewHolder(
             .placeholder(R.drawable.ic_main_noimgfilm)
             .into(viewBinding.actorImg)
 
+        itemView.setOnClickListener {
+            actorsListener.onActorSelected(actor.id)
+        }
     }
 }

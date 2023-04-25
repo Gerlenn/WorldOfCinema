@@ -18,6 +18,7 @@
     <string name="get_favorite_error">Get favorite error</string>
     <string name="delete_favorite_error">Delete favorite error</string>
     <string name="error_get_movie_details">Error get movie details</string>
+    <string name="error_get_actor_details">Error get actor details</string>
     <string name="error_fav_selected">Error favorite selected</string>
     <string name="error_fav_delete">Error favorite delete</string>
     <string name="error_login_user">Login error</string>
@@ -33,6 +34,7 @@
     <string name="error_get_category_movies">Error get category movies</string>
     <string name="error_get_actors_movie">Error get actors movie</string>
     <string name="error_select_category">Error select category</string>
+    <string name="error_select_all_actor">Error select all actor in the movie</string>
     <string name="all">all</string>
 
 </resources>
