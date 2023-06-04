@@ -18,7 +18,7 @@ The World Of Cinema app follows the official architecture guidance.
 <img src='https://github.com/Gerlenn/WorldOfCinema/blob/develop/screens/architecture.png' width='70%'/>
 
 ## Tech Stacks
-* [Retrofit](http://square.github.io/retrofit/) + [OkHttp](http://square.github.io/okhttp/) - RESTful API and networking client.
+* [Retrofit](http://square.github.io/retrofit/) + [Gson](https://github.com/google/gson) - RESTful API and networking client.
 * [Hilt](https://dagger.dev/hilt/) - Dependency injection.
 * [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - A collections of libraries that help you design rebust, testable and maintainable apps.
     * [Room](https://developer.android.com/training/data-storage/room) - Local persistence database.
