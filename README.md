@@ -29,6 +29,6 @@ The World Of Cinema app follows the official architecture guidance.
 * [Flow](https://developer.android.com/kotlin/flow) Stream of value that returns from suspend function.
 * [Picasso](https://square.github.io/picasso/) - Image loading.
   
-# Credits
+# Design
 * Design on <a href="https://www.figma.com/file/dHEcVu2y0vMAdZqC5wKjMS/Media?type=design&node-id=21-247">Figma</a>.
   
